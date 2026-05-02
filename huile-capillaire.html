@@ -5,318 +5,191 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huile Capillaire | La Maison du Savon</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <script src="cart.js"></script>
     <style>
         :root {
             --glass: rgba(255, 255, 255, 0.6);
             --border-alpha: rgba(210, 180, 140, 0.3);
+            --gold-leaf: #b08d57;
+            --dark-brown: #3e2723;
         }
 
         body {
             background-color: #fcfaf8;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #3e2723;
+            color: var(--dark-brown);
+            margin: 0;
         }
 
-        /* --- IMMERSIVE LAYOUT --- */
         .main-wrapper {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
         .product-hero {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 80px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
         }
 
-        /* --- IMAGE GALLERY (GODLY LOOK) --- */
+        /* --- REDUCED IMAGE SIZE BY HALF --- */
         .image-stage {
             position: relative;
-            padding: 20px;
-        }
-
-        .image-stage::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--beige);
-            border-radius: 40px;
-            z-index: -1;
-            transform: rotate(-2deg);
-            opacity: 0.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .main-img {
-            width: 100%;
+            width: 60%; /* Reduced size significantly */
+            max-width: 320px;
             border-radius: 30px;
-            box-shadow: 20px 20px 60px rgba(62, 39, 35, 0.1);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 15px 15px 50px rgba(62, 39, 35, 0.1);
+            transition: all 0.5s ease;
         }
 
         .main-img:hover {
-            transform: scale(1.03) translateY(-10px);
-            box-shadow: 25px 25px 70px rgba(62, 39, 35, 0.15);
+            transform: scale(1.05);
         }
 
-        /* --- PRODUCT INFO column --- */
-        .product-info-column {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .eyebrow {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8em;
-            color: var(--light-brown);
-            font-weight: 700;
-        }
+        /* --- INFO COLUMN --- */
+        .product-info-column { display: flex; flex-direction: column; gap: 20px; }
 
         .product-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5em;
-            line-height: 1.1;
+            font-size: 3em;
             margin: 0;
-            color: var(--dark-brown);
         }
 
-        .price-qty-row {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 10px;
+        .arabic-subtitle {
+            font-family: 'Amiri', serif;
+            font-size: 1.8em;
+            color: var(--gold-leaf);
+            margin-top: -10px;
         }
 
-        .luxury-badge {
-            padding: 8px 24px;
-            background: white;
-            border: 1px solid var(--border-alpha);
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1em;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        .price-tag {
+            font-size: 1.8em;
+            font-weight: 300;
+            color: var(--gold-leaf);
         }
-
-        /* --- DYNAMIC QUANTITY --- */
-        .qty-pill {
-            display: flex;
-            align-items: center;
-            background: white;
-            border: 1px solid var(--border-alpha);
-            border-radius: 50px;
-            padding: 6px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-
-        .qty-control {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: #fcfaf8;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2em;
-        }
-
-        .qty-control:hover { background: var(--light-brown); color: white; }
-
-        #qty-value { width: 40px; text-align: center; font-weight: 700; }
 
         /* --- BUTTONS --- */
-        .action-stack { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-
         .btn-luxury {
-            position: relative;
-            overflow: hidden;
-            padding: 20px;
+            padding: 18px;
             border-radius: 50px;
             border: none;
             font-weight: 800;
-            font-size: 1em;
-            letter-spacing: 1px;
             cursor: pointer;
-            transition: 0.4s;
+            transition: 0.3s;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-bottom: 10px;
         }
 
-        .btn-atc {
-            background: transparent;
-            border: 2px solid var(--dark-brown);
-            color: var(--dark-brown);
-        }
+        .btn-atc { background: transparent; border: 2px solid var(--dark-brown); color: var(--dark-brown); }
+        .btn-buy { background: var(--dark-brown); color: white; }
+        .btn-luxury:hover { transform: translateY(-3px); opacity: 0.9; }
 
-        .btn-atc:hover { background: var(--dark-brown); color: white; }
-
-        .btn-buy {
-            background: var(--dark-brown);
-            color: white;
-            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.2);
-        }
-
-        .btn-buy::after {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            transition: 0.8s;
-        }
-
-        .btn-buy:hover::after { left: 100%; }
-        .btn-buy:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(62, 39, 35, 0.3); }
-
-        /* --- RITUAL SECTION --- */
-        .ritual-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-            padding: 20px;
-            background: white;
-            border-radius: 20px;
-            border: 1px solid var(--border-alpha);
-        }
-
-        .ritual-step { text-align: center; font-size: 0.85em; }
-        .ritual-step svg { width: 24px; color: var(--light-brown); margin-bottom: 8px; }
-
-        /* --- DESCRIPTION (GODLY) --- */
+        /* --- ARABIC CONTENT CARDS --- */
         .godly-details {
-            margin-top: 100px;
+            margin-top: 60px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 30px;
         }
 
         .detail-card {
             background: white;
-            padding: 40px;
+            padding: 35px;
             border-radius: 30px;
             border: 1px solid var(--border-alpha);
+            text-align: right; /* RTL focus */
         }
 
-        .detail-card h3 { font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 20px; }
-
-        /* Animations */
-        @keyframes fadeInPop {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        .detail-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            text-align: left; /* Keep title left or center */
+            border-bottom: 1px solid var(--border-alpha);
+            padding-bottom: 10px;
         }
 
-        .pop-anim { animation: fadeInPop 0.3s ease-out; }
+        .arabic-body {
+            font-family: 'Amiri', serif;
+            font-size: 1.3em;
+            line-height: 1.7;
+            direction: rtl;
+            color: #555;
+        }
 
-        @media (max-width: 900px) {
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
             .product-hero, .godly-details { grid-template-columns: 1fr; }
-            .product-title { font-size: 2.5em; }
+            .image-stage { margin-bottom: 30px; }
+            .main-img { width: 70%; } /* Small and centered on phone */
+            .product-info-column { text-align: center; }
+            .detail-card { text-align: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- Minimal Navigation -->
-<header style="padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;">
-    <a href="index.html" style="text-decoration: none; color: var(--dark-brown); font-weight: 700; letter-spacing: 1px;">← BACK</a>
-    <a href="cart.html" class="cart-icon-container" style="position: relative;">
-        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" width="22" alt="Cart">
-        <span class="cart-count">0</span>
-    </a>
+<header style="padding: 20px 40px;">
+    <a href="index.html" style="text-decoration: none; color: var(--dark-brown); font-weight: 700;">← BACK</a>
 </header>
 
 <main class="main-wrapper">
     <section class="product-hero">
-        <!-- Left: The Visual Stage -->
+        <!-- Center Image Section -->
         <div class="image-stage">
-            <img src="Instagram Post - Shine Naturally (6).png" alt="Huile Capillaire" class="main-img">
+            <img src="Gemini_Generated_Image_amsswtamsswtamss.png" alt="Huile Capillaire" class="main-img">
         </div>
 
-        <!-- Right: The Information Column -->
         <div class="product-info-column">
-            <span class="eyebrow">The Hermel Collection</span>
             <h1 class="product-title">Huile Capillaire</h1>
-            
-            <div class="price-qty-row">
-                <div class="luxury-badge">$8.00</div>
-                <div class="luxury-badge">30 ml</div>
-                
-                <div class="qty-pill">
-                    <button class="qty-control" onclick="updateQty(-1)">−</button>
-                    <span id="qty-value">1</span>
-                    <button class="qty-control" onclick="updateQty(1)">+</button>
-                </div>
-            </div>
+            <div class="arabic-subtitle">زيت الشعر الطبيعي</div>
+            <div class="price-tag">$8.00</div>
 
-            <p style="color: #666; line-height: 1.8; font-size: 1.05em;">
-                A liquid gold elixir for your hair. Hand-blended in small batches to ensure the highest vibration and potency for your hair ritual.
+            <p style="line-height: 1.6; color: #666;">
+                Un élixir précieux pour nourrir et revitaliser vos cheveux en profondeur.
             </p>
 
-            <!-- Ritual Icons -->
-            <div class="ritual-section">
-                <div class="ritual-step">
-                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z"/></svg>
-                    <p>Repair Roots</p>
-                </div>
-                <div class="ritual-step">
-                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/></svg>
-                    <p>Intense Shine</p>
-                </div>
-                <div class="ritual-step">
-                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14H11V21L20 10H13Z"/></svg>
-                    <p>Natural Energy</p>
-                </div>
-            </div>
-
             <div class="action-stack">
-                <button class="btn-luxury btn-atc" onclick="addToCart('Huile Capillaire', 8.00, 'Instagram Post - Shine Naturally (6).png')">Add to Cart</button>
-                <button class="btn-luxury btn-buy" onclick="addToCart('Huile Capillaire', 8.00, 'Instagram Post - Shine Naturally (6).png', true)">Buy It Now</button>
+                <button class="btn-luxury btn-atc" onclick="addToCart('Huile Capillaire', 8.00)">Add to Cart</button>
+                <button class="btn-luxury btn-buy" onclick="addToCart('Huile Capillaire', 8.00, '', true)">Buy It Now</button>
             </div>
         </div>
     </section>
 
-    <!-- Godly Detailed Section -->
     <section class="godly-details">
+        <!-- The Ritual (Arabic) -->
         <div class="detail-card">
-            <h3>The Ritual</h3>
-            <p style="line-height: 2;">
-                Apply 3-5 drops to your palms and breathe in the botanical aroma. Massage deeply into the scalp or run through damp ends. Leave for 20 minutes before washing, or use a tiny amount as a daily shine finisher.
-            </p>
+            <h3>Le Rituel — الطقوس</h3>
+            <div class="arabic-body">
+                ضعي بضع قطرات من الزيت على راحة يدك، ثم دلكي بها فروة الرأس وأطراف الشعر بلطف. اتركيه لمدة ٢٠ دقيقة قبل الغسل للحصول على تغذية عميقة، أو استخدمي كمية بسيطة جداً على الشعر الجاف لإضافة لمعان فوري وحماية من التقصّف.
+            </div>
         </div>
+
+        <!-- Ingredients (Arabic) -->
         <div class="detail-card">
-            <h3>Ingredients</h3>
-            <ul style="list-style: none; padding: 0; line-height: 2.5;">
-                <li>✨ <strong style="color: var(--dark-brown);">Pure Argan:</strong> Liquid gold for fiber repair.</li>
-                <li>🌿 <strong style="color: var(--dark-brown);">Wild Rosemary:</strong> Stimulates dormant follicles.</li>
-                <li>🥥 <strong style="color: var(--dark-brown);">Pressed Coconut:</strong> Deep molecular hydration.</li>
-                <li>🌸 <strong style="color: var(--dark-brown);">Hermel Botanicals:</strong> Our secret local infusion.</li>
-            </ul>
+            <h3>Ingrédients — المكونات</h3>
+            <div class="arabic-body">
+                مزيج فاخر من زيت الأرغان النقي لإصلاح الألياف، زيت إكليل الجبل لتحفيز البصيلات، زيت جوز الهند للترطيب العميق، مع لمسة من الأعشاب المحلية من جبال الهرمل لتعزيز قوة الشعر وحيويته بشكل طبيعي تماماً.
+            </div>
         </div>
     </section>
 </main>
 
-<footer style="margin-top: 100px; padding: 60px; text-align: center; border-top: 1px solid var(--border-alpha);">
-    <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2em; color: var(--light-brown);">
-        "Nature is the only master of beauty."
-    </p>
-    <p style="margin-top: 20px; font-size: 0.8em; letter-spacing: 2px; color: #aaa;">LA MAISON DU SAVON DE HERMEL</p>
+<footer style="margin-top: 80px; padding: 40px; text-align: center; opacity: 0.6;">
+    <p style="font-family: 'Playfair Display', serif; font-style: italic;">"La beauté pure de Hermel"</p>
+    <p style="font-size: 0.7em; letter-spacing: 2px;">LA MAISON DU SAVON DE HERMEL</p>
 </footer>
-
-<script>
-    function updateQty(change) {
-        let display = document.getElementById('qty-value');
-        let current = parseInt(display.innerText);
-        if (current + change >= 1) {
-            display.innerText = current + change;
-            display.classList.remove('pop-anim');
-            void display.offsetWidth; // trigger reflow
-            display.classList.add('pop-anim');
-        }
-    }
-</script>
 
 </body>
 </html>
