@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - La Maison du Savon de Hermel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <script src="cart.js"></script>
+    <style>
+        :root {
+            --soft-cream: #fcfaf8;
+            --deep-earth: #3e2723;
+            --gold-leaf: #b08d57;
+            --border-light: rgba(176, 141, 87, 0.15);
+            --glass-white: rgba(255, 255, 255, 0.85);
+        }
+
+        body {
+            background-color: var(--soft-cream);
+            color: var(--deep-earth);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- PARALLAX HEADER --- */
+        header {
+            position: relative;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+                        url('WhatsApp Image 2025-12-28 at 11.00.29 AM (2).jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin: 0;
+            color: var(--deep-earth);
+        }
+
+        /* --- LAYOUT --- */
+        main {
+            max-width: 1100px;
+            margin: -50px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        /* --- FORMS & INPUTS --- */
+        .checkout-form, .order-summary, .submitted-section {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(62, 39, 35, 0.05);
+            border: 1px solid var(--border-light);
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #f8f1eb;
+            padding-bottom: 10px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 1px solid #e0e0e0;
+            font-family: inherit;
+            font-size: 1em;
+            background: transparent;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-bottom-color: var(--gold-leaf);
+        }
+
+        /* --- CART STYLING --- */
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #fcfaf8;
+        }
+
+        .qty-controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+        
+        .btn-small {
+            background: var(--soft-cream);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .btn-small:hover { background: var(--gold-leaf); color: white; }
+
+        .remove-link {
+            color: #b33939;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        /* --- ORDER HISTORY --- */
+        .submitted-section { margin-top: 40px; border: 1px solid var(--gold-leaf); }
+        
+        .submitted-order-card {
+            background: var(--soft-cream);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        #submit-btn {
+            width: 100%;
+            background: var(--deep-earth);
+            color: white;
+            padding: 22px;
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 20px;
+        }
+
+        #submit-btn:hover {
+            background: var(--gold-leaf);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(176, 141, 87, 0.3);
+        }
+
+        @media (max-width: 850px) {
+            .checkout-container { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>Finalize Your Ritual</h1>
+    </div>
+</header>
+
+<main>
+    <form id="order-form">
+        <div class="checkout-container">
+            <!-- Left Side: Contact Form -->
+            <div class="checkout-form">
+                <h3>Delivery Details</h3>
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <input type="text" name="First Name" placeholder="First Name" required>
+                        <input type="text" name="Last Name" placeholder="Last Name" required>
+                    </div>
+                    <input type="text" name="Address" placeholder="Street Address" required>
+                    <input type="text" name="City" placeholder="City / Village" required>
+                    <input type="text" name="Phone" placeholder="WhatsApp Phone Number" required>
+                </div>
+
+                <div style="background: #fcfaf8; padding: 15px; border-radius: 15px; margin: 20px 0;">
+                    <p style="margin:0; font-size: 0.9em;"><strong>Shipping:</strong> $4.00 Flat Rate (Cash on Delivery)</p>
+                </div>
+                
+                <!-- Hidden inputs for Formspree -->
+                <input type="hidden" name="Order Details" id="order-details-input">
+                <input type="hidden" name="Total Price" id="total-price-input">
+
+                <button type="submit" id="submit-btn">Place My Order</button>
+            </div>
+
+            <!-- Right Side: Order Summary -->
+            <div class="order-summary">
+                <h3>Your Selection</h3>
+                <div id="cart-items-list"></div>
+                <div style="margin-top: 30px; border-top: 2px solid var(--soft-cream); padding-top: 20px;">
+                    <div class="summary-item" style="border:none;">
+                        <span style="font-family: 'Playfair Display', serif; font-size: 1.5em; font-weight: bold;">Total</span>
+                        <span id="total-val" style="font-size: 1.5em; font-weight: bold; color: var(--gold-leaf);">$4.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Submitted Orders Section -->
+    <div class="submitted-section" id="submitted-section" style="display: none;">
+        <h3>Order History</h3>
+        <div id="submitted-orders-list"></div>
+    </div>
+</main>
+
+<script>
+    let orderHistory = JSON.parse(localStorage.getItem('hermel_order_history')) || [];
+
+    function renderCart() {
+        const list = document.getElementById('cart-items-list');
+        let subtotal = 0;
+        let orderString = "";
+        list.innerHTML = '';
+
+        if (cart.length === 0) {
+            list.innerHTML = '<p style="opacity: 0.5;">Your selection is empty.</p>';
+            document.getElementById('submit-btn').disabled = true;
+            document.getElementById('submit-btn').style.opacity = "0.4";
+        } else {
+            document.getElementById('submit-btn').disabled = false;
+            document.getElementById('submit-btn').style.opacity = "1";
+        }
+
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+            orderString += `${item.name} (x${item.quantity}) | `;
+            
+            list.innerHTML += `
+                <div class="summary-item">
+                    <div style="flex:1;">
+                        <strong style="color: var(--deep-earth);">${item.name}</strong>
+                        <div class="qty-controls">
+                            <button type="button" class="btn-small" onclick="changeQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button type="button" class="btn-small" onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
+                        <span class="remove-link" onclick="removeFromCart(${index})">Remove Selection</span>
+                    </div>
+                    <span style="font-weight: 700;">$${itemTotal.toFixed(2)}</span>
+                </div>`;
+        });
+
+        const finalTotal = subtotal + 4;
+        document.getElementById('total-val').innerText = `$${finalTotal.toFixed(2)}`;
+        document.getElementById('order-details-input').value = orderString;
+        document.getElementById('total-price-input').value = `$${finalTotal.toFixed(2)}`;
+    }
+
+    function renderHistory() {
+        const historyList = document.getElementById('submitted-orders-list');
+        const section = document.getElementById('submitted-section');
+
+        if (orderHistory.length > 0) {
+            section.style.display = "block";
+            historyList.innerHTML = orderHistory.map(order => `
+                <div class="submitted-order-card">
+                    <div style="color: var(--gold-leaf); font-weight: 700; margin-bottom: 5px;">Placed on: ${order.date}</div>
+                    <div style="font-style: italic; color: #666;">${order.details}</div>
+                    <div style="margin-top: 10px; font-weight: bold; border-top: 1px solid #eee; padding-top: 5px;">
+                        Total Paid (COD): ${order.total}
+                    </div>
+                    <p style="color: #27ae60; font-weight: bold; margin-top: 8px; font-size: 0.8em;">✓ SUBMITTED TO WORKSHOP</p>
+                </div>
+            `).join('');
+        }
+    }
+
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        btn.innerText = "Transmitting...";
+
+        fetch('https://formspree.io/f/mdabkaod', {
+            method: 'POST',
+            body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                const newOrder = {
+                    date: new Date().toLocaleString(),
+                    details: document.getElementById('order-details-input').value,
+                    total: document.getElementById('total-price-input').value
+                };
+                orderHistory.unshift(newOrder);
+                localStorage.setItem('hermel_order_history', JSON.stringify(orderHistory));
+
+                clearCart();
+                renderCart();
+                renderHistory();
+                btn.innerText = "Selection Sent";
+                alert("Thank you! Your order has been placed.");
+            } else {
+                alert("There was an issue with the transmission. Please try again.");
+                btn.innerText = "Place My Order";
+            }
+        });
+    });
+
+    renderCart();
+    renderHistory();
+</script>
+</body>
+</html>
