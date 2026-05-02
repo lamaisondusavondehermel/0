@@ -1,201 +1,315 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huile Capillaire - La Maison du Savon de Hermel</title>
+    <title>Détails du Produit - La Maison du Savon</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <script src="cart.js"></script>
     <style>
-        :root {
-            --soft-cream: #fcfaf8;
-            --deep-earth: #3e2723;
-            --gold-leaf: #b08d57;
-            --border-light: rgba(176, 141, 87, 0.15);
-        }
-
-        body {
-            background-color: var(--soft-cream);
-            color: var(--deep-earth);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* --- PRODUCT LAYOUT --- */
+        /* Product Page Layout */
         .product-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 100vh;
-            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            margin: 40px auto;
+            max-width: 950px;
         }
 
-        /* LEFT SIDE: IMAGE */
-        .product-image-section {
-            background: #fff;
-            height: 100%;
+        .product-image-side {
+            flex: 0 0 380px;
+            max-width: 100%; 
+        }
+
+        .product-image-side img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image-side img:hover {
+            transform: scale(1.02);
+        }
+
+        .product-details-side {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .product-details-side h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-brown);
+            font-size: 2.5em;
+            letter-spacing: -0.5px;
+        }
+
+        /* Badge Styling */
+        .badge-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .product-badge {
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            background-color: #fcfaf8; 
+            color: var(--dark-brown);
+            border: 1px solid #eee1d5;
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* DYNAMIC QUANTITY PILL */
+        .quantity-wrapper {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            width: 150px;
+            background: #ffffff;
+            border: 1.5px solid #eee1d5;
+            border-radius: 40px;
+            padding: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+
+        .quantity-selector:hover {
+            border-color: var(--light-brown);
+        }
+
+        .qty-btn {
+            background: #fcfaf8;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4em;
+            color: var(--dark-brown);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 0;
+            line-height: 0;
         }
 
-        .product-image-section img {
+        .qty-btn:hover {
+            background: var(--light-brown);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .qty-btn:active {
+            transform: scale(0.9);
+        }
+
+        #qty-value {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2em;
+            color: var(--dark-brown);
+            user-select: none;
+            transition: transform 0.1s ease;
+        }
+
+        /* Dynamic Pop Animation */
+        .number-pop {
+            animation: pop 0.2s ease-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); color: var(--light-brown); }
+            100% { transform: scale(1); }
+        }
+
+        /* Buttons Styling */
+        .button-group {
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-main {
+            padding: 16px;
             border-radius: 40px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-        }
-
-        /* RIGHT SIDE: INFO */
-        .product-info-section {
-            padding: 60px 10%;
-        }
-
-        .breadcrumb {
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8em;
-            margin-bottom: 20px;
-            display: block;
-            text-decoration: none;
-            color: var(--gold-leaf);
+            letter-spacing: 1px;
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5em;
-            margin: 0;
+        .btn-add {
+            background: white;
+            color: var(--dark-brown);
+            border: 1.5px solid var(--light-brown);
         }
 
-        .arabic-title {
-            font-family: 'Amiri', serif;
-            font-size: 2em;
-            color: var(--gold-leaf);
-            display: block;
-            margin-bottom: 20px;
+        .btn-add:hover {
+            background: #fcfaf8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        .price-tag {
-            font-size: 2em;
-            font-weight: 200;
-            margin-bottom: 30px;
-            display: block;
-        }
-
-        /* --- ARABIC CONTENT BLOCKS --- */
-        .content-block {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .content-block h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        .arabic-text {
-            font-family: 'Amiri', serif;
-            font-size: 1.25em;
-            line-height: 1.8;
-            direction: rtl;
-            text-align: right;
-            color: #555;
-            display: block;
-        }
-
-        .add-to-cart-btn {
-            background: var(--deep-earth);
+        .btn-buy {
+            background: var(--dark-brown);
             color: white;
             border: none;
-            padding: 20px 40px;
-            font-family: inherit;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 30px;
-            width: 100%;
         }
 
-        .add-to-cart-btn:hover {
-            background: var(--gold-leaf);
-            transform: translateY(-3px);
+        .btn-buy:hover {
+            background: #3e2723;
+            box-shadow: 0 8px 20px rgba(62, 39, 35, 0.3);
+            transform: translateY(-2px);
         }
 
-        /* --- MOBILE OPTIMIZATION --- */
+        .description-section {
+            margin: 60px auto 0;
+            padding: 40px 20px;
+            border-top: 1px solid #f0f0f0;
+            text-align: left;
+            max-width: 950px;
+        }
+
+        .description-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin: 20px 0;
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: opacity 0.2s;
+        }
+
+        .back-home:hover { opacity: 0.7; }
+
         @media (max-width: 768px) {
-            .product-container {
-                grid-template-columns: 1fr;
-                display: block; /* Stack vertically */
-            }
-
-            .product-image-section {
-                height: 70vh; /* Takes most of the screen on open */
-                padding: 20px;
-                background: var(--soft-cream);
-            }
-
-            .product-image-section img {
-                max-width: 90%;
-                margin: 0 auto;
-                display: block;
-            }
-
-            .product-info-section {
-                padding: 40px 25px;
-                text-align: center;
-            }
-
-            .arabic-text {
-                text-align: center; /* Center Arabic text for better mobile balance */
-            }
-
-            h1 { font-size: 2.5em; }
+            .product-container { flex-direction: column; align-items: center; }
+            .product-image-side { width: 90%; flex: 0 0 auto; }
+            .product-details-side { align-items: center; text-align: center; }
+            .badge-container, .quantity-wrapper, .button-group { align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="product-container">
-        <!-- Image Section (Centered on Mobile) -->
-        <section class="product-image-section">
-            <img src="Gemini_Generated_Image_amsswtamsswtamss.png" alt="Huile Capillaire">
-        </section>
+<a href="cart.html" class="cart-icon-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" width="25" alt="Cart">
+    <span class="cart-count">0</span>
+</a>
 
-        <!-- Information Section -->
-        <section class="product-info-section">
-            <a href="index.html" class="breadcrumb">← Retour à la collection</a>
-            <h1>Huile Capillaire</h1>
-            <span class="arabic-title">زيت مغذي للشعر</span>
-            <span class="price-tag">$8.00</span>
+<main style="padding: 0 20px;">
+    <a href="index.html" class="back-home">← Back to Collection</a>
 
-            <p>Une infusion luxueuse d'huiles naturelles conçue pour redonner force et éclat à votre chevelure.</p>
-
-            <div class="content-block">
-                <h3>Le Rituel <span style="color: var(--gold-leaf);">— الطقوس</span></h3>
-                <span class="arabic-text">
-                    ضعي بضع قطرات من الزيت على أطراف شعرك أو فروة الرأس. دلكيه بلطف واتركيه لمدة ٣٠ دقيقة قبل الغسل، أو استخدميه كلمسة نهائية لإضافة لمعان فائق ونعومة تدوم طويلاً.
-                </span>
+    <section>
+        <div class="product-container">
+            <!-- Image Side -->
+            <div class="product-image-side">
+                <img src="Instagram Post - Shine Naturally (6).png" alt="Huile Capillaire">
             </div>
 
-            <div class="content-block">
-                <h3>Ingrédients <span style="color: var(--gold-leaf);">— المكونات</span></h3>
-                <span class="arabic-text">
-                    مزيج طبيعي من زيت الأرغان، زيت اللوز الحلو، زيت جوز الهند، وفيتامين E لتعزيز نمو الشعر وحمايته من التلف.
-                </span>
-            </div>
+            <!-- Details Side -->
+            <div class="product-details-side">
+                <h1>Huile Capillaire</h1> 
+                
+                <div class="badge-container">
+                    <div class="product-badge">30 ml</div>
+                    <div class="product-badge">$8.00</div>
+                </div>
+                
+                <!-- Dynamic Pill Quantity Selector -->
+                <div class="quantity-wrapper">
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="updateQty(-1)">−</button>
+                        <span id="qty-value">1</span>
+                        <button class="qty-btn" onclick="updateQty(1)">+</button>
+                    </div>
+                </div>
 
-            <button class="add-to-cart-btn" onclick="addToCart('Huile Capillaire', 8.00)">
-                Ajouter au Panier
-            </button>
-        </section>
-    </div>
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button class="btn-main btn-add" onclick="addToCart('Huile Capillaire', 8.00, 'Instagram Post - Shine Naturally (6).png')">
+                        Add to Cart
+                    </button>
+
+                    <button class="btn-main btn-buy" onclick="addToCart('Huile Capillaire', 8.00, 'Instagram Post - Shine Naturally (6).png', true)">
+                        Buy It Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="description-section">
+            <h2>Description</h2>
+            <p style="line-height: 1.8; color: #555; font-size: 1.1em;">
+                Our Hair Oil is a 100% natural elixir designed to transform your hair. Infused with 
+                rare botanical extracts, it deeply penetrates the hair shaft to provide moisture where it's 
+                needed most, leaving a mirror-like shine and weightless softness.
+            </p>
+            <ul style="line-height: 2.2; color: #555; margin-top: 20px; font-size: 1.05em;">
+                <li>✨ <strong>Pure Cold-Pressed Oils:</strong> No chemicals, just nature.</li>
+                <li>🌿 <strong>Scalp Health:</strong> Soothes and revitalizes the roots.</li>
+                <li>💧 <strong>Universal Formula:</strong> Perfect for all hair textures.</li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer style="text-align: center; padding: 60px 40px; color: #bbb; font-size: 0.85em; letter-spacing: 1px;">
+    <p>© LA MAISON DU SAVON DE HERMEL</p>
+</footer>
+
+<script>
+    function updateQty(change) {
+        let qtyDisplay = document.getElementById('qty-value');
+        let val = parseInt(qtyDisplay.innerText);
+        
+        if (change > 0 || val > 1) {
+            val += change;
+            qtyDisplay.innerText = val;
+            
+            // Add pop animation
+            qtyDisplay.classList.remove('number-pop');
+            void qtyDisplay.offsetWidth; // Trigger reflow
+            qtyDisplay.classList.add('number-pop');
+        }
+    }
+</script>
 
 </body>
 </html>
