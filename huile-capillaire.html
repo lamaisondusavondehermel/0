@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huile Capillaire | La Maison du Savon</title>
+    <title>Hair Oil | La Maison du Savon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <script src="cart.js"></script>
@@ -35,7 +35,6 @@
             align-items: center;
         }
 
-        /* --- INCREASED IMAGE SIZE (1.5x) --- */
         .image-stage {
             display: flex;
             justify-content: center;
@@ -43,36 +42,21 @@
         }
 
         .main-img {
-            width: 85%; /* Increased from 55% to ~85% for 1.5x effect */
+            width: 85%; 
             max-width: 500px;
             border-radius: 40px;
             box-shadow: 20px 20px 60px rgba(62, 39, 35, 0.1);
-            transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
         }
 
-        .main-img:hover { transform: scale(1.02); }
-
-        /* --- INFO COLUMN --- */
-        .product-info-column { display: flex; flex-direction: column; gap: 18px; }
+        .product-info-column { display: flex; flex-direction: column; gap: 15px; }
 
         .product-title {
             font-family: 'Playfair Display', serif;
             font-size: 3.5em;
             margin: 0;
-            line-height: 1.1;
         }
 
-        .arabic-subtitle {
-            font-family: 'Amiri', serif;
-            font-size: 2em;
-            color: var(--gold-leaf);
-        }
-
-        /* --- META TAGS --- */
-        .meta-tags {
-            display: flex;
-            gap: 12px;
-        }
+        .meta-tags { display: flex; gap: 12px; margin-top: 10px; }
 
         .tag-rect {
             padding: 12px 25px;
@@ -80,12 +64,11 @@
             background: white;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 1.1em;
         }
 
-        .price-tag { color: var(--gold-leaf); min-width: 90px; text-align: center; }
+        .price-tag { color: var(--gold-leaf); }
 
-        /* --- QUANTITY SELECTOR (PLUS-MINUS) --- */
+        /* --- QUANTITY SELECTOR --- */
         .qty-selector {
             display: flex;
             align-items: center;
@@ -98,29 +81,23 @@
         }
 
         .qty-btn {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             border: none;
-            background: var(--soft-cream);
-            color: var(--dark-brown);
-            font-size: 1.2em;
-            font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: bold;
         }
 
-        .qty-btn:hover { background: var(--dark-brown); color: white; }
+        #qty-count { padding: 0 20px; font-weight: 800; }
 
-        #qty-count {
-            padding: 0 20px;
-            font-weight: 800;
-            font-size: 1.1em;
-            min-width: 30px;
-            text-align: center;
+        /* --- DESCRIPTION LINES --- */
+        .desc-english { font-size: 1.1em; color: #555; line-height: 1.6; margin-top: 10px; }
+        .desc-arabic { 
+            font-family: 'Amiri', serif; 
+            font-size: 1.4em; 
+            color: var(--gold-leaf); 
+            direction: rtl; 
+            margin-top: 5px;
         }
 
         /* --- BUTTONS --- */
@@ -130,19 +107,17 @@
             border: none;
             font-weight: 800;
             cursor: pointer;
-            transition: 0.4s;
             text-transform: uppercase;
-            letter-spacing: 2px;
             width: 100%;
+            transition: 0.3s;
         }
 
         .btn-atc { background: transparent; border: 2px solid var(--dark-brown); color: var(--dark-brown); margin-bottom: 12px;}
         .btn-buy { background: var(--dark-brown); color: white; }
-        .btn-luxury:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        /* --- ARABIC CONTENT CARDS --- */
+        /* --- DETAILED SECTION --- */
         .godly-details {
-            margin-top: 80px;
+            margin-top: 60px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
@@ -157,45 +132,46 @@
 
         .detail-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8em;
+            font-size: 1.6em;
             margin-bottom: 20px;
-            border-bottom: 1px solid #f0e6d2;
-            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-alpha);
+            padding-bottom: 10px;
         }
 
-        .arabic-body {
-            font-family: 'Amiri', serif;
-            font-size: 1.4em;
-            line-height: 1.8;
-            direction: rtl;
-            text-align: right;
-            color: #444;
+        /* --- SEPARATED INGREDIENT LINES --- */
+        .line-en { display: block; margin-bottom: 15px; line-height: 1.6; color: #444; }
+        .line-ar { 
+            display: block; 
+            direction: rtl; 
+            text-align: right; 
+            font-family: 'Amiri', serif; 
+            font-size: 1.3em; 
+            color: var(--gold-leaf);
+            line-height: 1.6;
         }
 
-        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 850px) {
             .product-hero, .godly-details { grid-template-columns: 1fr; }
-            .main-img { width: 90%; } 
-            .product-info-column, .meta-tags, .qty-selector { align-self: center; justify-content: center; text-align: center; }
-            .qty-selector { margin: 10px auto; }
+            .product-info-column { text-align: center; align-items: center; }
+            .meta-tags, .qty-selector { justify-content: center; }
+            .desc-arabic, .line-ar { text-align: center; }
         }
     </style>
 </head>
 <body>
 
 <header style="padding: 20px 40px;">
-    <a href="index.html" style="text-decoration: none; color: var(--dark-brown); font-weight: 700; letter-spacing: 1px;">← BACK</a>
+    <a href="index.html" style="text-decoration: none; color: var(--dark-brown); font-weight: 700;">← BACK</a>
 </header>
 
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
-            <img src="Gemini_Generated_Image_amsswtamsswtamss.png" alt="Huile Capillaire" class="main-img">
+            <img src="Gemini_Generated_Image_amsswtamsswtamss.png" alt="Hair Oil" class="main-img">
         </div>
 
         <div class="product-info-column">
-            <h1 class="product-title">Huile Capillaire</h1>
-            <div class="arabic-subtitle">زيت الشعر الطبيعي</div>
+            <h1 class="product-title">Hair Oil</h1>
             
             <div class="meta-tags">
                 <div class="tag-rect">30 ml</div>
@@ -209,11 +185,11 @@
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
 
-            <p style="line-height: 1.8; color: #555; font-size: 1.05em;">
-                Une infusion botanique riche et sacrée, conçue pour transformer la texture de vos cheveux et nourrir votre cuir chevelu.
-            </p>
+            <!-- Description on Separated Lines -->
+            <div class="desc-english">A precious elixir designed to deeply nourish and revitalize your hair.</div>
+            <div class="desc-arabic">إكسير ثمين مصمم لتغذية وحماية شعرك بعمق.</div>
 
-            <div class="action-stack">
+            <div class="action-stack" style="width: 100%; margin-top: 10px;">
                 <button class="btn-luxury btn-atc" onclick="handleAddToCart()">Add to Cart</button>
                 <button class="btn-luxury btn-buy" onclick="handleAddToCart(true)">Buy It Now</button>
             </div>
@@ -221,42 +197,36 @@
     </section>
 
     <section class="godly-details">
+        <!-- Ritual Card -->
         <div class="detail-card">
-            <h3>Le Rituel — الطقوس</h3>
-            <div class="arabic-body">
-                ضعي بضع قطرات من الزيت على راحة يدك، ثم دلكي بها فروة الرأس وأطراف الشعر بلطف. اتركيه لمدة ٢٠ دقيقة قبل الغسل للحصول على تغذية عميقة، أو استخدمي كمية بسيطة جداً على الشعر الجاف لإضافة لمعان فوري وحماية من التقصّف.
-            </div>
+            <h3>The Ritual — الطقوس</h3>
+            <span class="line-en">Apply a few drops to the scalp and ends. Leave on for 20 minutes before washing.</span>
+            <span class="line-ar">ضعي بضع قطرات على فروة الرأس والأطراف. اتركيه لمدة ٢٠ دقيقة قبل الغسل.</span>
         </div>
 
+        <!-- Ingredients Card -->
         <div class="detail-card">
-            <h3>Ingrédients — المكونات</h3>
-            <div class="arabic-body">
-                مزيج فاخر من زيت الأرغان النقي لإصلاح الألياف، زيت إكليل الجبل لتحفيز البصيلات، زيت جوز الهند للترطيب العميق، مع لمسة من الأعشاب المحلية من جبال الهرمل لتعزيز قوة الشعر وحيويته بشكل طبيعي تماماً.
-            </div>
+            <h3>Ingredients — المكونات</h3>
+            <span class="line-en">Pure Argan oil, wild Rosemary, pressed Coconut, and natural Hermel botanicals.</span>
+            <span class="line-ar">زيت الأرغان النقي، إكليل الجبل البري، جوز الهند، وأعشاب الهرمل الطبيعية.</span>
         </div>
     </section>
 </main>
 
 <script>
     let currentQty = 1;
-
     function changeQty(amount) {
         currentQty += amount;
         if (currentQty < 1) currentQty = 1;
         document.getElementById('qty-count').innerText = currentQty;
     }
-
     function handleAddToCart(redirect = false) {
-        // Logic to communicate with your cart.js
+        // Updated to pass the English name "Hair Oil" into your cart
         for(let i = 0; i < currentQty; i++) {
-            addToCart('Huile Capillaire', 8.00, 'Gemini_Generated_Image_amsswtamsswtamss.png');
+            addToCart('Hair Oil', 8.00, 'Gemini_Generated_Image_amsswtamsswtamss.png');
         }
-        
-        if(redirect) {
-            window.location.href = 'checkout.html';
-        } else {
-            alert(currentQty + " item(s) added to your ritual.");
-        }
+        if(redirect) window.location.href = 'checkout.html';
+        else alert(currentQty + " item(s) added to cart.");
     }
 </script>
 
