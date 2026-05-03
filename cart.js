@@ -1,56 +1,63 @@
+// منع أي رسالة alert من الظهور في الموقع نهائياً
+window.alert = function() { 
+    console.log("Alert blocked safely."); 
+    return false; 
+};
+
 let cart = JSON.parse(localStorage.getItem('hermel_cart')) || [];
 
-function updateCartIcon() {
-    const counts = document.querySelectorAll('.cart-count');
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    counts.forEach(el => el.innerText = totalItems);
+function saveCart() {
+    localStorage.setItem('hermel_cart', JSON.stringify(cart));
 }
 
-function addToCart(productName, price, image, isRedirect = false) {
-    const qty = parseInt(document.getElementById('qty-value')?.innerText || 1);
-    const existingItem = cart.find(item => item.name === productName);
-    
+function addToCart(name, price, image) {
+    const existingItem = cart.find(item => item.name === name);
     if (existingItem) {
-        existingItem.quantity += qty;
+        existingItem.quantity += 1;
     } else {
-        cart.push({ name: productName, price: price, img: image, quantity: qty });
+        cart.push({ name, price: parseFloat(price), image: image, quantity: 1 });
     }
-
     saveCart();
-    if (isRedirect) {
-        window.location.href = 'cart.html';
-    } else {
-        alert("Ajouté au panier !");
-    }
-}
-
-// NEW: Functions for the Cart Page
-function changeQuantity(index, delta) {
-    cart[index].quantity += delta;
-    if (cart[index].quantity <= 0) {
-        removeFromCart(index);
-    } else {
-        saveCart();
-        renderCart(); // This will be defined in cart.html
-    }
+    showNotification(name + " added to your ritual");
 }
 
 function removeFromCart(index) {
     cart.splice(index, 1);
     saveCart();
-    renderCart();
+    if (typeof renderCart === "function") renderCart();
 }
 
-function saveCart() {
-    localStorage.setItem('hermel_cart', JSON.stringify(cart));
-    updateCartIcon();
+function changeQuantity(index, delta) {
+    if (cart[index].quantity + delta > 0) {
+        cart[index].quantity += delta;
+        saveCart();
+        if (typeof renderCart === "function") renderCart();
+    }
 }
 
-document.addEventListener('DOMContentLoaded', updateCartIcon);
-
-// Add this to the bottom of cart.js
 function clearCart() {
     cart = [];
-    localStorage.setItem('hermel_cart', JSON.stringify(cart));
-    updateCartIcon();
+    saveCart();
+}
+
+// دالة التنبيه الأنيقة البديلة عن alert
+function showNotification(message) {
+    const old = document.querySelector('.toast-msg');
+    if(old) old.remove();
+
+    const toast = document.createElement("div");
+    toast.className = 'toast-msg';
+    toast.innerText = message;
+    toast.style.cssText = `
+        position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+        background: #3e2723; color: #fcfaf8; padding: 12px 25px;
+        border-radius: 50px; z-index: 10000; font-size: 14px;
+        font-family: sans-serif; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: opacity 0.5s; opacity: 1;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => { 
+        toast.style.opacity = "0"; 
+        setTimeout(() => toast.remove(), 500); 
+    }, 2500);
 }

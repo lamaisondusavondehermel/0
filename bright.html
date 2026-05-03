@@ -252,17 +252,20 @@
         </div>
     </section>
 </main>
-
 <script>
     let currentQty = 1;
+
+    // دالة الزائد والناقص
     function changeQty(amount) {
         currentQty += amount;
         if (currentQty < 1) currentQty = 1;
         document.getElementById('qty-count').innerText = currentQty;
     }
 
+    // دالة الإضافة للسلة
     function handleAddToCart(redirect = false) {
         if (typeof addToCart === "function") {
+            // إضافة الكمية المطلوبة
             for(let i = 0; i < currentQty; i++) {
                 addToCart('Chamomile Bright Cleanser', 10.00, 'Gemini_Generated_Image_xy32e6xy32e6xy32.png');
             }
@@ -271,7 +274,10 @@
         if(redirect) {
             window.location.href = 'checkout.html';
         } else {
-            alert(currentQty + " item(s) added to cart.");
+            // استدعاء التنبيه الأنيق من ملف cart.js (ما عاد فيه alert هون)
+            if (typeof showNotification === "function") {
+                showNotification(currentQty + " item(s) added to your ritual");
+            }
         }
     }
 </script>
