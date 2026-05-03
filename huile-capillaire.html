@@ -68,7 +68,6 @@
 
         .price-tag { color: var(--gold-leaf); }
 
-        /* --- QUANTITY SELECTOR --- */
         .qty-selector {
             display: flex;
             align-items: center;
@@ -90,7 +89,6 @@
 
         #qty-count { padding: 0 20px; font-weight: 800; }
 
-        /* --- DESCRIPTION LINES --- */
         .desc-english { font-size: 1.1em; color: #555; line-height: 1.6; margin-top: 10px; }
         .desc-arabic { 
             font-family: 'Amiri', serif; 
@@ -100,7 +98,6 @@
             margin-top: 5px;
         }
 
-        /* --- BUTTONS --- */
         .btn-luxury {
             padding: 20px;
             border-radius: 50px;
@@ -115,39 +112,45 @@
         .btn-atc { background: transparent; border: 2px solid var(--dark-brown); color: var(--dark-brown); margin-bottom: 12px;}
         .btn-buy { background: var(--dark-brown); color: white; }
 
-        /* --- DETAILED SECTION --- */
+        /* --- REDUCED SIZE FOR LOWER SECTION --- */
         .godly-details {
-            margin-top: 60px;
+            margin-top: 40px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
         }
 
         .detail-card {
             background: white;
-            padding: 40px;
-            border-radius: 35px;
+            padding: 25px; /* Reduced padding */
+            border-radius: 25px;
             border: 1px solid var(--border-alpha);
         }
 
         .detail-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6em;
-            margin-bottom: 20px;
+            font-size: 1.3em; /* Smaller Title */
+            margin-bottom: 15px;
             border-bottom: 1px solid var(--border-alpha);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
-        /* --- SEPARATED INGREDIENT LINES --- */
-        .line-en { display: block; margin-bottom: 15px; line-height: 1.6; color: #444; }
+        .line-en { 
+            display: block; 
+            margin-bottom: 12px; 
+            line-height: 1.5; 
+            color: #666; 
+            font-size: 0.95em; /* Smaller English text */
+        }
+
         .line-ar { 
             display: block; 
             direction: rtl; 
             text-align: right; 
             font-family: 'Amiri', serif; 
-            font-size: 1.3em; 
+            font-size: 1.15em; /* Smaller Arabic text */
             color: var(--gold-leaf);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         @media (max-width: 850px) {
@@ -178,16 +181,14 @@
                 <div class="tag-rect price-tag">$8.00</div>
             </div>
 
-            <!-- Quantity Selector -->
             <div class="qty-selector">
                 <button class="qty-btn" onclick="changeQty(-1)">−</button>
                 <span id="qty-count">1</span>
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
 
-            <!-- Description on Separated Lines -->
-            <div class="desc-english">A luxurious and nourishing hair oil that blends the potent benefits of Rosemary, Sidr, and Lavender to provide comprehensive care. It deeply feeds the scalp and strengthens hair follicles from the roots, granting your hair a natural shine and ultimate softness with a safe, refreshing botanical scent.</div>
-            <div class="desc-arabic">زيت شعر فاخر ومغذي، يجمع بين فوائد إكليل الجبل والسدر واللافندر ليقدم عناية متكاملة؛ حيث يعمل على تغذية فروة الرأس بعمق وتقوية البصيلات من الجذور، مما يمنح الشعر لمعانًا طبيعيًا ونعومة فائقة برائحة عشبية منعشة وآمنة.</div>
+            <div class="desc-english">A luxurious and nourishing hair oil that blends the potent benefits of Rosemary, Sidr, and Lavender to provide comprehensive care. It deeply feeds the scalp and strengthens hair follicles from the roots.</div>
+            <div class="desc-arabic">زيت شعر فاخر ومغذي، يجمع بين فوائد إكليل الجبل والسدر واللافندر ليقدم عناية متكاملة؛ حيث يعمل على تغذية فروة الرأس بعمق وتقوية البصيلات من الجذور.</div>
 
             <div class="action-stack" style="width: 100%; margin-top: 10px;">
                 <button class="btn-luxury btn-atc" onclick="handleAddToCart()">Add to Cart</button>
@@ -197,18 +198,18 @@
     </section>
 
     <section class="godly-details">
-        <!-- Ritual Card -->
+        <!-- Ritual Card (Compact) -->
         <div class="detail-card">
-            <h3>The Ritual — الطقوس</h3>
-            <span class="line-en">Apply the oil to the scalp and gently massage for 5 to 10 minutes. Leave it on for two hours or overnight before washing. It is recommended to use it 2-3 times a week (an allergy patch test on a small area is required before full use).</span>
-            <span class="line-ar">يُوضع الزيت على فروة الرأس مع التدليك اللطيف لمدة 5 إلى 10 دقائق، ويُترك على الشعر لمدة ساعتين أو طوال الليل قبل غسله، ويُنصح باستخدامه من مرتين إلى ثلاث مرات أسبوعياً (مع ضرورة إجراء اختبار حساسية على منطقة صغيرة قبل الاستخدام).</span>
+            <h3> How to Use - طريقة الاستخدام </h3>
+            <span class="line-en">Massage for 5-10 mins. Leave for 2 hours or overnight before washing. Use 2-3 times a week (patch test required).</span>
+            <span class="line-ar">دلكي الفروة 5-10 دقائق، اتركيه ساعتين أو طوال الليل قبل الغسل. يُنصح به 2-3 مرات أسبوعياً.</span>
         </div>
 
-        <!-- Ingredients Card -->
+        <!-- Ingredients Card (Compact) -->
         <div class="detail-card">
-            <h3>Ingredients — المكونات</h3>
-            <span class="line-en">Formulated with 100% natural carrier oils (Jojoba Oil and Grape Seed Oil) and essential oils. This blend is completely free from parabens, silicones, and mineral oils.</span>
-            <span class="line-ar">يتكون من زيوت ناقلة طبيعية (زيت الجوجوبا وزيت بذور العنب) وزيوت أساسية، وهي تركيبة طبيعية 100% خالية من البارابين، السيليكون، والزيوت المعدنية.</span>
+            <h3>Ingredients - المكونات</h3>
+            <span class="line-en">100% natural carrier oils (Jojoba, Grape Seed) and essential oils. Free from parabens, silicones, and mineral oils.</span>
+            <span class="line-ar">زيوت ناقلة طبيعية 100% (جوجوبا وبذور العنب) وزيوت أساسية. خالٍ من البارابين والسيليكون.</span>
         </div>
     </section>
 </main>
@@ -221,7 +222,6 @@
         document.getElementById('qty-count').innerText = currentQty;
     }
     function handleAddToCart(redirect = false) {
-        // Updated to pass the English name "Hair Oil" into your cart
         for(let i = 0; i < currentQty; i++) {
             addToCart('Hair Oil', 8.00, 'Gemini_Generated_Image_amsswtamsswtamss.png');
         }
