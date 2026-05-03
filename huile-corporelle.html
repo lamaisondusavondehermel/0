@@ -139,7 +139,7 @@
             margin-bottom: 12px; 
             line-height: 1.5; 
             color: #666; 
-            font-size: 0.95em; 
+            font-size: 0.95em;
         }
 
         .line-ar { 
@@ -169,6 +169,7 @@
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
+            <!-- الصورة الجديدة التي أرسلتها -->
             <img src="Gemini_Generated_Image_e2s9iie2s9iie2s9.png" alt="Rose Body Oil" class="main-img">
         </div>
 
@@ -176,7 +177,7 @@
             <h1 class="product-title">Rose Body Oil</h1>
             
             <div class="meta-tags">
-                <div class="tag-rect">30 ml</div>
+                <div class="tag-rect">100% Natural</div>
                 <div class="tag-rect price-tag">$5.00</div>
             </div>
 
@@ -186,8 +187,9 @@
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
 
-            <div class="desc-english">A luxurious Silky Body Oil with Rose and Jojoba, crafted from lightweight botanical oils that deeply nourish and soften the skin.</div>
-            <div class="desc-arabic">زيت جسم حريري فاخر يجمع بين الورد والجوجوبا، مصنوع من زيوت نباتية خفيفة تعمل على تغذية البشرة وتنعيمها بعمق.</div>
+            <!-- الوصف بناءً على ملف Instagram Post - Jojoba Body Oil with Rose (1).jpg -->
+            <div class="desc-english">A luxurious Silky Body Oil with Rose and Jojoba, crafted from lightweight botanical oils that deeply nourish and soften the skin. Features a delicate natural rose scent with a warm touch of Cedarwood.</div>
+            <div class="desc-arabic">زيت جسم حريري فاخر بالورد والجوجوبا، مصنوع من زيوت نباتية خفيفة تغذي البشرة وتنعمها، برائحة الورد الطبيعية الرقيقة ولمسة دافئة من خشب الأرز.</div>
 
             <div class="action-stack" style="width: 100%; margin-top: 10px;">
                 <button class="btn-luxury btn-atc" onclick="handleAddToCart()">Add to Cart</button>
@@ -197,16 +199,18 @@
     </section>
 
     <section class="godly-details">
+        <!-- How to Use Card -->
         <div class="detail-card">
             <h3> How to Use - طريقة الاستخدام </h3>
-            <span class="line-en">Apply to the body to nourish the skin. Perform a patch test before full use. Avoid eye contact.</span>
-            <span class="line-ar">يُدهن على الجسم لتغذية البشرة. يجب إجراء اختبار حساسية قبل الاستخدام وتجنب ملامسة العينين.</span>
+            <span class="line-en">Apply to the body to nourish the skin. For external use only. Patch test on a small area before use and avoid contact with eyes.</span>
+            <span class="line-ar">للاستخدام الخارجي فقط. يُدهن على الجسم لتغذية البشرة. يُرجى إجراء اختبار حساسية على منطقة صغيرة وتجنب ملامسة العينين.</span>
         </div>
 
+        <!-- Ingredients Card -->
         <div class="detail-card">
             <h3>Ingredients - المكونات</h3>
-            <span class="line-en">Jojoba, Grape Seed, Sweet Almond, Cedarwood, Vitamin E, and Damask Rose Essential Oil. 100% Natural.</span>
-            <span class="line-ar">بذور الجوجوبا، بذور العنب، اللوز الحلو، خشب الأرز، فيتامين هـ، وزيت الورد الدمشقي. طبيعي 100%.</span>
+            <span class="line-en">Jojoba Seed Oil, Grape Seed Oil, Sweet Almond Oil, Cedarwood Oil (carrier oil), Vitamin E, and Damask Rose Essential Oil. Free from parabens and silicones.</span>
+            <span class="line-ar">زيت بذور الجوجوبا، بذور العنب، اللوز الحلو، خشب الأرز، فيتامين هـ، وزيت الورد الدمشقي العطري. خالٍ من البارابين والسيليكون والزيوت المعدنية.</span>
         </div>
     </section>
 </main>
@@ -219,11 +223,9 @@
         document.getElementById('qty-count').innerText = currentQty;
     }
     function handleAddToCart(redirect = false) {
-        // Updated to reflect Rose Body Oil details
         for(let i = 0; i < currentQty; i++) {
-            if (typeof addToCart === "function") {
-                addToCart('Rose Body Oil', 5.00, 'Gemini_Generated_Image_e2s9iie2s9iie2s9.png');
-            }
+            // تحديث البيانات في وظيفة السلة
+            addToCart('Rose Body Oil', 5.00, 'Gemini_Generated_Image_e2s9iie2s9iie2s9.png');
         }
         if(redirect) window.location.href = 'checkout.html';
         else alert(currentQty + " item(s) added to cart.");
