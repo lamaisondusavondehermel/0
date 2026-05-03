@@ -6,6 +6,7 @@
     <title>Checkout - La Maison du Savon de Hermel</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <!-- تأكدي أن ملف cart.js موجود في نفس المجلد -->
     <script src="cart.js"></script>
     <style>
         :root {
@@ -24,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* --- PARALLAX HEADER --- */
         header {
             position: relative;
             height: 40vh;
@@ -56,7 +56,6 @@
             color: var(--deep-earth);
         }
 
-        /* --- LAYOUT --- */
         main {
             max-width: 1100px;
             margin: -50px auto 100px;
@@ -71,7 +70,6 @@
             gap: 40px;
         }
 
-        /* --- FORMS & INPUTS --- */
         .checkout-form, .order-summary, .submitted-section {
             background: white;
             padding: 40px;
@@ -105,7 +103,6 @@
             border-bottom-color: var(--gold-leaf);
         }
 
-        /* --- CART STYLING --- */
         .summary-item {
             display: flex;
             justify-content: space-between;
@@ -143,7 +140,6 @@
             font-weight: 700;
         }
 
-        /* --- ORDER HISTORY --- */
         .submitted-section { margin-top: 40px; border: 1px solid var(--gold-leaf); }
         
         .submitted-order-card {
@@ -171,10 +167,15 @@
             margin-top: 20px;
         }
 
-        #submit-btn:hover {
+        #submit-btn:hover:not(:disabled) {
             background: var(--gold-leaf);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(176, 141, 87, 0.3);
+        }
+
+        #submit-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
         }
 
         @media (max-width: 850px) {
@@ -192,46 +193,47 @@
 </header>
 
 <main>
-    <form id="order-form">
-        <div class="checkout-container">
-            <!-- Left Side: Contact Form -->
-            <div class="checkout-form">
-                <h3>Delivery Details</h3>
-                <div class="input-group">
-                    <input type="email" name="email" placeholder="Email Address" required>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <input type="text" name="First Name" placeholder="First Name" required>
-                        <input type="text" name="Last Name" placeholder="Last Name" required>
+    <div id="checkout-main-content">
+        <form id="order-form">
+            <div class="checkout-container">
+                <!-- Left Side: Contact Form -->
+                <div class="checkout-form">
+                    <h3>Delivery Details</h3>
+                    <div class="input-group">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <input type="text" name="First Name" placeholder="First Name" required>
+                            <input type="text" name="Last Name" placeholder="Last Name" required>
+                        </div>
+                        <input type="text" name="Address" placeholder="Street Address" required>
+                        <input type="text" name="City" placeholder="City / Village" required>
+                        <input type="text" name="Phone" placeholder="WhatsApp Phone Number" required>
                     </div>
-                    <input type="text" name="Address" placeholder="Street Address" required>
-                    <input type="text" name="City" placeholder="City / Village" required>
-                    <input type="text" name="Phone" placeholder="WhatsApp Phone Number" required>
+
+                    <div style="background: #fcfaf8; padding: 15px; border-radius: 15px; margin: 20px 0;">
+                        <p style="margin:0; font-size: 0.9em;"><strong>Shipping:</strong> $4.00 Flat Rate (Cash on Delivery)</p>
+                    </div>
+                    
+                    <input type="hidden" name="Order Details" id="order-details-input">
+                    <input type="hidden" name="Total Price" id="total-price-input">
+
+                    <button type="submit" id="submit-btn">Place My Order</button>
                 </div>
 
-                <div style="background: #fcfaf8; padding: 15px; border-radius: 15px; margin: 20px 0;">
-                    <p style="margin:0; font-size: 0.9em;"><strong>Shipping:</strong> $4.00 Flat Rate (Cash on Delivery)</p>
-                </div>
-                
-                <!-- Hidden inputs for Formspree -->
-                <input type="hidden" name="Order Details" id="order-details-input">
-                <input type="hidden" name="Total Price" id="total-price-input">
-
-                <button type="submit" id="submit-btn">Place My Order</button>
-            </div>
-
-            <!-- Right Side: Order Summary -->
-            <div class="order-summary">
-                <h3>Your Selection</h3>
-                <div id="cart-items-list"></div>
-                <div style="margin-top: 30px; border-top: 2px solid var(--soft-cream); padding-top: 20px;">
-                    <div class="summary-item" style="border:none;">
-                        <span style="font-family: 'Playfair Display', serif; font-size: 1.5em; font-weight: bold;">Total</span>
-                        <span id="total-val" style="font-size: 1.5em; font-weight: bold; color: var(--gold-leaf);">$4.00</span>
+                <!-- Right Side: Order Summary -->
+                <div class="order-summary">
+                    <h3>Your Selection</h3>
+                    <div id="cart-items-list"></div>
+                    <div style="margin-top: 30px; border-top: 2px solid var(--soft-cream); padding-top: 20px;">
+                        <div class="summary-item" style="border:none;">
+                            <span style="font-family: 'Playfair Display', serif; font-size: 1.5em; font-weight: bold;">Total</span>
+                            <span id="total-val" style="font-size: 1.5em; font-weight: bold; color: var(--gold-leaf);">$4.00</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <!-- Submitted Orders Section -->
     <div class="submitted-section" id="submitted-section" style="display: none;">
@@ -241,21 +243,22 @@
 </main>
 
 <script>
+    // التأكد من تحميل السلة من localStorage عند بدء الصفحة
     let orderHistory = JSON.parse(localStorage.getItem('hermel_order_history')) || [];
 
     function renderCart() {
         const list = document.getElementById('cart-items-list');
+        const submitBtn = document.getElementById('submit-btn');
         let subtotal = 0;
         let orderString = "";
+        
         list.innerHTML = '';
 
-        if (cart.length === 0) {
-            list.innerHTML = '<p style="opacity: 0.5;">Your selection is empty.</p>';
-            document.getElementById('submit-btn').disabled = true;
-            document.getElementById('submit-btn').style.opacity = "0.4";
+        if (!cart || cart.length === 0) {
+            list.innerHTML = '<p style="opacity: 0.5; text-align:center; padding: 20px;">Your selection is empty.</p>';
+            submitBtn.disabled = true;
         } else {
-            document.getElementById('submit-btn').disabled = false;
-            document.getElementById('submit-btn').style.opacity = "1";
+            submitBtn.disabled = false;
         }
 
         cart.forEach((item, index) => {
@@ -306,7 +309,10 @@
     document.getElementById('order-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
+        const mainContent = document.getElementById('checkout-main-content');
+        
         btn.innerText = "Transmitting...";
+        btn.disabled = true;
 
         fetch('https://formspree.io/f/mdabkaod', {
             method: 'POST',
@@ -322,18 +328,32 @@
                 orderHistory.unshift(newOrder);
                 localStorage.setItem('hermel_order_history', JSON.stringify(orderHistory));
 
-                clearCart();
-                renderCart();
+                // تغيير شكل الصفحة لرسالة نجاح بدلاً من الـ alert
+                mainContent.innerHTML = `
+                    <div style="text-align: center; padding: 60px; background: white; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid var(--gold-leaf);">
+                        <div style="font-size: 4em; margin-bottom: 20px;">🌿</div>
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5em; color: var(--deep-earth);">Thank You!</h2>
+                        <p style="font-size: 1.1em; color: var(--gold-leaf); margin-bottom: 30px;">Your order has been received. We will contact you via WhatsApp soon.</p>
+                        <a href="index.html" style="display: inline-block; text-decoration: none; background: var(--deep-earth); color: white; padding: 15px 40px; border-radius: 30px; font-weight: bold; transition: 0.3s;">Return to Boutique</a>
+                    </div>
+                `;
+
+                clearCart(); 
                 renderHistory();
-                btn.innerText = "Selection Sent";
-                alert("Thank you! Your order has been placed.");
             } else {
-                alert("There was an issue with the transmission. Please try again.");
+                // استخدام نظام التنبيه من ملف cart.js إذا فشل الإرسال
+                if (typeof showNotification === "function") {
+                    showNotification("Transmission failed. Please try again.");
+                } else {
+                    alert("Transmission failed.");
+                }
                 btn.innerText = "Place My Order";
+                btn.disabled = false;
             }
         });
     });
 
+    // تشغيل العرض عند فتح الصفحة
     renderCart();
     renderHistory();
 </script>
