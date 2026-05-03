@@ -169,6 +169,7 @@
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
+            <!-- تم تحديث مسار الصورة هنا بناءً على طلبك -->
             <img src="WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg" alt="Hand Cream" class="main-img">
         </div>
 
@@ -186,7 +187,7 @@
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
 
-            <div class="desc-english">A nourishing moisturizer for hands and body with shea butter, sweet almond oil. It hydrates, nourishes and softens the skin.</div>
+            <div class="desc-english">A nourishing moisturizer for hands and body with shea butter and sweet almond oil. It hydrates, nourishes, and softens the skin.</div>
             <div class="desc-arabic">مرطب مغذٍ لليدين والجسم بزبدة الشيا وزيت اللوز الحلو، يرطب ويغذي وينعم البشرة.</div>
 
             <div class="action-stack" style="width: 100%; margin-top: 10px;">
@@ -199,14 +200,14 @@
     <section class="godly-details">
         <div class="detail-card">
             <h3> How to Use - طريقة الاستخدام </h3>
-            <span class="line-en">Apply to clean skin and massage gently until absorbed. For external use only. Patch test recommended. Keep out of reach of children.</span>
-            <span class="line-ar">يُوضع على بشرة نظيفة ويُدلك بلطف حتى تمتصه البشرة. للاستخدام الخارجي فقط. يُنصح باختباره على منطقة صغيرة من الجلد. يُحفظ بعيداً عن متناول الأطفال.</span>
+            <span class="line-en">Apply to clean skin and massage gently until absorbed. For external use only.</span>
+            <span class="line-ar">يُوضع على بشرة نظيفة ويُدلك بلطف حتى تمتصه البشرة. للاستخدام الخارجي فقط.</span>
         </div>
 
         <div class="detail-card">
             <h3>Ingredients - المكونات</h3>
-            <span class="line-en">Distilled water, Vegetable glycerin, Sweet almond oil, BTMS, Grapeseed oil, Shea butter, Beeswax, Vitamin E, Phenoxyethanol, Ethanol, Fragrance oil (emulsified), and Citric acid.</span>
-            <span class="line-ar">ماء مقطر، جلسرين نباتي، زيت اللوز الحلو، BTMS، زيت بذور العنب، زبدة الشيا، شمع العسل، فيتامين هـ، فينوكسي إيثانول، إيثانول، زيت عطري (مستحلب)، وحمض الستريك.</span>
+            <span class="line-en">Distilled water, Vegetable glycerin, Sweet almond oil, BTMS, Grapeseed oil, Shea butter, Beeswax, Vitamin E, Phenoxyethanol, Ethanol, Fragrance oil, and Citric acid.</span>
+            <span class="line-ar">ماء مقطر، جلسرين نباتي، زيت اللوز الحلو، BTMS، زيت بذور العنب، زبدة الشيا، شمع العسل، فيتامين هـ، فينوكسي إيثانول، إيثانول، زيت عطري، وحمض الستريك.</span>
         </div>
     </section>
 </main>
@@ -220,6 +221,7 @@
     }
     function handleAddToCart(redirect = false) {
         for(let i = 0; i < currentQty; i++) {
+            // استخدام اسم ملف الصورة الصحيح في دالة السلة أيضاً
             addToCart('Hand Cream', 6.00, 'WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg');
         }
         if(redirect) window.location.href = 'checkout.html';
