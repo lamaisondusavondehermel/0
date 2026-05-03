@@ -22,10 +22,42 @@
             margin: 0;
         }
 
+        /* --- Header Styling --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+        }
+
+        .back-link {
+            text-decoration: none; 
+            color: var(--dark-brown); 
+            font-weight: 700; 
+            font-size: 0.8em; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .cart-link {
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .cart-link:hover, .back-link:hover {
+            color: var(--gold-leaf);
+            transform: scale(1.1);
+        }
+
+        /* --- Main Layout --- */
         .main-wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px 20px 60px 20px;
         }
 
         .product-hero {
@@ -85,6 +117,7 @@
             border: none;
             cursor: pointer;
             font-weight: bold;
+            background: #f5f0eb;
         }
 
         #qty-count { padding: 0 20px; font-weight: 800; }
@@ -153,6 +186,7 @@
         }
 
         @media (max-width: 850px) {
+            header { padding: 20px; }
             .product-hero, .godly-details { grid-template-columns: 1fr; }
             .product-info-column { text-align: center; align-items: center; }
             .meta-tags, .qty-selector { justify-content: center; }
@@ -162,14 +196,19 @@
 </head>
 <body>
 
-<header style="padding: 20px 40px;">
-    <a href="index.html" style="text-decoration: none; color: var(--dark-brown); font-weight: 700;">← BACK</a>
+<header>
+    <!-- زر العودة -->
+    <a href="index.html" class="back-link">← BACK</a>
+    
+    <!-- أيقونة السلة -->
+    <a href="cart.html" class="cart-link" title="Cart">
+        <span class="cart-icon">🛒</span>
+    </a>
 </header>
 
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
-            <!-- تم تحديث مسار الصورة هنا بناءً على طلبك -->
             <img src="WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg" alt="Hand Cream" class="main-img">
         </div>
 
@@ -220,9 +259,10 @@
         document.getElementById('qty-count').innerText = currentQty;
     }
     function handleAddToCart(redirect = false) {
-        for(let i = 0; i < currentQty; i++) {
-            // استخدام اسم ملف الصورة الصحيح في دالة السلة أيضاً
-            addToCart('Hand Cream', 6.00, 'WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg');
+        if (typeof addToCart === "function") {
+            for(let i = 0; i < currentQty; i++) {
+                addToCart('Hand Cream', 6.00, 'WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg');
+            }
         }
         if(redirect) window.location.href = 'checkout.html';
         else alert(currentQty + " item(s) added to cart.");

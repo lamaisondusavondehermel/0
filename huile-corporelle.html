@@ -22,10 +22,42 @@
             margin: 0;
         }
 
+        /* --- Header Styling (Matched with Soap Page) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+        }
+
+        .back-link {
+            text-decoration: none; 
+            color: var(--dark-brown); 
+            font-weight: 700; 
+            font-size: 0.8em; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .cart-link {
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .cart-link:hover, .back-link:hover {
+            color: var(--gold-leaf);
+            transform: scale(1.1);
+        }
+
+        /* --- Main Layout --- */
         .main-wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px 20px 60px 20px;
         }
 
         .product-hero {
@@ -85,6 +117,7 @@
             border: none;
             cursor: pointer;
             font-weight: bold;
+            background: #f5f0eb;
         }
 
         #qty-count { padding: 0 20px; font-weight: 800; }
@@ -153,6 +186,7 @@
         }
 
         @media (max-width: 850px) {
+            header { padding: 20px; }
             .product-hero, .godly-details { grid-template-columns: 1fr; }
             .product-info-column { text-align: center; align-items: center; }
             .meta-tags, .qty-selector { justify-content: center; }
@@ -162,14 +196,19 @@
 </head>
 <body>
 
-<header style="padding: 20px 40px;">
-    <a href="index.html" style="text-decoration: none; color: var(--dark-brown); font-weight: 700;">← BACK</a>
+<header>
+    <!-- زر العودة -->
+    <a href="index.html" class="back-link">← BACK</a>
+    
+    <!-- أيقونة السلة فقط -->
+    <a href="cart.html" class="cart-link" title="Cart">
+        <span class="cart-icon">🛒</span>
+    </a>
 </header>
 
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
-            <!-- الصورة الجديدة التي أرسلتها -->
             <img src="Gemini_Generated_Image_e2s9iie2s9iie2s9.png" alt="Rose Body Oil" class="main-img">
         </div>
 
@@ -187,7 +226,6 @@
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
 
-            <!-- الوصف بناءً على ملف Instagram Post - Jojoba Body Oil with Rose (1).jpg -->
             <div class="desc-english">A luxurious Silky Body Oil with Rose and Jojoba, crafted from lightweight botanical oils that deeply nourish and soften the skin. Features a delicate natural rose scent with a warm touch of Cedarwood.</div>
             <div class="desc-arabic">زيت جسم حريري فاخر بالورد والجوجوبا، مصنوع من زيوت نباتية خفيفة تغذي البشرة وتنعمها، برائحة الورد الطبيعية الرقيقة ولمسة دافئة من خشب الأرز.</div>
 
@@ -199,14 +237,12 @@
     </section>
 
     <section class="godly-details">
-        <!-- How to Use Card -->
         <div class="detail-card">
             <h3> How to Use - طريقة الاستخدام </h3>
             <span class="line-en">Apply to the body to nourish the skin. For external use only. Patch test on a small area before use and avoid contact with eyes.</span>
             <span class="line-ar">للاستخدام الخارجي فقط. يُدهن على الجسم لتغذية البشرة. يُرجى إجراء اختبار حساسية على منطقة صغيرة وتجنب ملامسة العينين.</span>
         </div>
 
-        <!-- Ingredients Card -->
         <div class="detail-card">
             <h3>Ingredients - المكونات</h3>
             <span class="line-en">Jojoba Seed Oil, Grape Seed Oil, Sweet Almond Oil, Cedarwood Oil (carrier oil), Vitamin E, and Damask Rose Essential Oil. Free from parabens and silicones.</span>
@@ -224,8 +260,9 @@
     }
     function handleAddToCart(redirect = false) {
         for(let i = 0; i < currentQty; i++) {
-            // تحديث البيانات في وظيفة السلة
-            addToCart('Rose Body Oil', 5.00, 'Gemini_Generated_Image_e2s9iie2s9iie2s9.png');
+            if (typeof addToCart === "function") {
+                addToCart('Rose Body Oil', 5.00, 'Gemini_Generated_Image_e2s9iie2s9iie2s9.png');
+            }
         }
         if(redirect) window.location.href = 'checkout.html';
         else alert(currentQty + " item(s) added to cart.");

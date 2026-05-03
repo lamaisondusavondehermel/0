@@ -38,6 +38,18 @@
             background-attachment: fixed;
         }
 
+        /* أيقونة السلة العلوية */
+        .top-cart {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            font-size: 1.8em;
+            text-decoration: none;
+            z-index: 10;
+            transition: 0.3s;
+        }
+        .top-cart:hover { transform: scale(1.1); }
+
         .header-content {
             position: relative;
             z-index: 2;
@@ -83,6 +95,7 @@
         .category-filter {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 12px;
             padding: 20px;
             background: var(--glass-white);
@@ -111,23 +124,21 @@
             background: var(--deep-earth);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(62, 39, 35, 0.1);
         }
 
-        /* --- PRODUCT GALLERY (PERFECTLY CENTERED) --- */
+        /* --- PRODUCT GALLERY --- */
         .gallery-wrapper {
-            max-width: 1200px; /* Limits width to keep 3 items looking clean */
-            margin: 60px auto;  /* Centers the entire gallery container */
-            padding: 0 40px;    /* Equal padding on both sides */
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
         }
 
         .product-gallery {
             display: grid;
-            /* Creates exactly 3 columns on large screens, scales down for mobile */
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 40px;
-            justify-content: center; /* Centers items if there's leftover space */
-            justify-items: center;    /* Ensures cards are centered within their grid cell */
+            justify-content: center;
+            justify-items: center;
         }
 
         .product-link { 
@@ -145,7 +156,7 @@
             text-align: center;
             transition: all 0.5s cubic-bezier(0.2, 1, 0.2, 1);
             border: 1px solid transparent;
-            max-width: 350px; /* Prevents cards from getting too wide */
+            max-width: 350px;
             width: 100%;
             box-sizing: border-box;
         }
@@ -206,16 +217,16 @@
         footer a { color: var(--gold-leaf); text-decoration: none; }
 
         @media (max-width: 768px) {
-            header { height: 60vh; background-attachment: scroll; } 
+            header { height: 60vh; } 
             .header-text h1 { font-size: 2.2em; }
-            .gallery-wrapper { padding: 0 20px; }
-            .product-gallery { gap: 20px; }
+            .top-cart { right: 20px; }
         }
     </style>
 </head>
 <body>
 
 <header>
+    <a href="cart.html" class="top-cart">🛒</a>
     <div class="header-content">
         <img src="cropped_circle_image (2) (1).png" alt="Logo" class="logo">
         <div class="header-text">
@@ -237,7 +248,7 @@
     <div class="gallery-wrapper">
         <div class="product-gallery">
 
-            <!-- Card: Rosemary Hair Oil  -->
+            <!-- Rosemary Hair Oil -->
             <a href="huile-capillaire.html" class="product-link">
                 <div class="product-card">
                     <img src="Gemini_Generated_Image_amsswtamsswtamss.png" alt="Rosemary Hair Oil">
@@ -249,14 +260,12 @@
                     </div>
                 </div>
             </a>
-            
-            
 
-            <!-- Card: Rose Body Oil  -->
+            <!-- Rose Body Oil -->
             <a href="huile-corporelle.html" class="product-link">
                 <div class="product-card">
-                    <img src="Gemini_Generated_Image_e2s9iie2s9iie2s9.png" alt="Rosemary Hair Oil">
-                    <h3>Rosemary Hair Oil</h3>
+                    <img src="Gemini_Generated_Image_e2s9iie2s9iie2s9.png" alt="Rose Body Oil">
+                    <h3>Rose Body Oil</h3>
                     <span class="arabic-name">زيت الورد للجسم</span>
                     <div class="product-meta">
                         <span class="quantity">30ml</span>
@@ -265,19 +274,20 @@
                 </div>
             </a>
 
-            <!-- Card: Hand Cream -->
-<a href="hand-cream.html" class="product-link">
-    <div class="product-card">
-        <img src="WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg" alt="Hand Cream">
-        <h3>Hand Cream</h3>
-        <span class="arabic-name">كريم اليدين</span>
-        <div class="product-meta">
-            <span class="quantity">50ml</span>
-            <span class="price">$8.00</span>
-        </div>
-    </div>
-</a>
-            <!-- Card: Rose Body Oil  -->
+            <!-- Hand Cream -->
+            <a href="hand-cream.html" class="product-link">
+                <div class="product-card">
+                    <img src="WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg" alt="Hand Cream">
+                    <h3>Hand Cream</h3>
+                    <span class="arabic-name">كريم اليدين</span>
+                    <div class="product-meta">
+                        <span class="quantity">50ml</span>
+                        <span class="price">$6.00</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Face Cream -->
             <a href="face-cream.html" class="product-link">
                 <div class="product-card">
                     <img src="WhatsApp Image 2025-12-28 at 11.00.29 AM (1).jpeg" alt="Face Cream">
@@ -289,19 +299,20 @@
                     </div>
                 </div>
             </a>
-           <!-- Card: Lavender & Oat Soap -->
-<a href="lavender-oat-soap.html" class="product-link">
-    <div class="product-card">
-        <!-- Updated to your requested image file -->
-        <img src="Gemini_Generated_Image_stzqtvstzqtvstzq copy.png" alt="Lavender & Oat Soap">
-        <h3>Lavender & Oat Soap</h3>
-        <span class="arabic-name">صابونة اللافندر والشوفان</span>
-        <div class="product-meta">
-            <span class="quantity">100 gr</span>
-            <span class="price">$8.00</span>
-        </div>
-    </div>
-</a>
+
+            <!-- Lavender & Oat Soap -->
+            <a href="lavendar-soap.html" class="product-link">
+                <div class="product-card">
+                    <img src="Gemini_Generated_Image_stzqtvstzqtvstzq copy.png" alt="Lavender & Oat Soap">
+                    <h3>Lavender & Oat Soap</h3>
+                    <span class="arabic-name">صابونة اللافندر والشوفان</span>
+                    <div class="product-meta">
+                        <span class="quantity">100 gr</span>
+                        <span class="price">$8.00</span>
+                    </div>
+                </div>
+            </a>
+
         </div>
     </div>
 </main>
@@ -320,15 +331,13 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const products = document.querySelectorAll('.product-link');
 
+        // خريطة التصنيفات بناءً على أسماء الروابط الفعلية
         const categoryMap = {
-            'savon-karite.html': ['body', 'soap'],
-            'savon-liquide.html': ['body', 'soap'],
-            'creme-mains.html': ['body'],
-            'face-cream.html': ['face'],
             'lavendar-soap.html': ['face', 'soap'],
+            'hand-cream.html': ['body'],
+            'face-cream.html': ['face'],
             'huile-corporelle.html': ['body'],
-            'huile-capillaire.html': ['hair'],
-            'mist.html': ['hair', 'body']
+            'huile-capillaire.html': ['hair']
         };
 
         filterBtns.forEach(btn => {
