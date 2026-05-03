@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miel et Encens Cream | La Maison du Savon</title>
+    <title>Chamomile Bright Cleanser | La Maison du Savon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <script src="cart.js"></script>
@@ -146,7 +146,7 @@
         .godly-details {
             margin-top: 40px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
         }
 
@@ -204,16 +204,15 @@
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
-            <!-- الصورة المطلوبة -->
-            <img src="Gemini_Generated_Image_ydl1o3ydl1o3ydl1 copy.png" alt="Miel et Encens" class="main-img">
+            <img src="Gemini_Generated_Image_xy32e6xy32e6xy32.png" alt="Chamomile Bright Cleanser" class="main-img">
         </div>
 
         <div class="product-info-column">
-            <h1 class="product-title">Miel et Encens</h1>
+            <h1 class="product-title">Chamomile Bright</h1>
             
             <div class="meta-tags">
-                <div class="tag-rect">50 g</div>
-                <div class="tag-rect price-tag">$9.00</div>
+                <div class="tag-rect">100 ml</div>
+                <div class="tag-rect price-tag">$10.00</div>
             </div>
 
             <div class="qty-selector">
@@ -222,8 +221,8 @@
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
 
-            <div class="desc-english">A natural rejuvenating cream blending the healing powers of honey and frankincense. It provides deep hydration, improves skin elasticity, and promotes a natural, healthy glow.</div>
-            <div class="desc-arabic">كريم طبيعي يجمع بين فوائد لبان الذكر والعسل. يعمل على ترطيب البشرة بعمق، شدّ وتحسين المظهر، ومنحك إشراقة طبيعية تدعم صحة البشرة ونعومتها.</div>
+            <div class="desc-english">An ultra-gentle foaming cleanser that revitalizes dull skin and evens out skin tone thanks to the power of arbutin and chamomile.</div>
+            <div class="desc-arabic">غسول رغوي فائق اللطافة يعيد الحيوية للبشرة الباهتة ويوحد لونها.</div>
 
             <div class="action-stack" style="width: 100%; margin-top: 10px;">
                 <button class="btn-luxury btn-atc" onclick="handleAddToCart()">Add to Cart</button>
@@ -233,16 +232,23 @@
     </section>
 
     <section class="godly-details">
+        
+
         <div class="detail-card">
-            <h3>Benefits - الفوائد</h3>
-            <span class="line-en">Deep hydration, skin tightening, improved appearance, soothing properties, and natural radiance.</span>
-            <span class="line-ar">ترطيب عميق، شدّ وتحسين المظهر، نعومة ومرونة للبشرة، تهدئة ودعم صحة البشرة، وإشراقة طبيعية.</span>
+            <h3>How to Use - الاستخدام</h3>
+            <span class="line-en">Apply a small amount of foam to wet skin, massage in circular motions for one minute, then rinse with lukewarm water.</span>
+            <span class="line-ar">توضع رغوة بسيطة على بشرة مبللة، تُدلك بحركات دائرية لمدة دقيقة ثم تُغسل بالماء الفاتر.</span>
         </div>
 
         <div class="detail-card">
+            <h3>Benefits - الفوائد</h3>
+            <span class="line-en">Deep cleansing, brightening, soothing, and promotes an even skin tone.</span>
+            <span class="line-ar">تنظيف عميق، تفتيح البشرة، تهدئة الاحمرار، وتوحيد لون البشرة.</span>
+        </div>
+        <div class="detail-card">
             <h3>Ingredients - المكونات</h3>
-            <span class="line-en">Aqua, Jojoba Oil, Sweet Almond Oil, Grape Seed Oil, Shea Butter, Vegetable Glycerin, Aloe Vera Gel, Honey, Frankincense Essential Oil, Vitamin E.</span>
-            <span class="line-ar">ماء مقطر، زيت الجوجوبا، زيت اللوز الحلو، زيت بذور العنب، زبدة الشيا، غليسيرين نباتي، جل الألوفيرا، عسل طبيعي، زيت لبان الذكر العطري، فيتامين هـ.</span>
+            <span class="line-en">Distilled Chamomile Water, Aloe Vera, Vegetable Glycerin, and Licorice Extract.</span>
+            <span class="line-ar">ماء البابونج المقطر، ألوفيرا، غليسيرين نباتي، وخلاصة عرق السوس.</span>
         </div>
     </section>
 </main>
@@ -258,7 +264,7 @@
     function handleAddToCart(redirect = false) {
         if (typeof addToCart === "function") {
             for(let i = 0; i < currentQty; i++) {
-                addToCart('Miel et Encens Cream', 9.00, 'Gemini_Generated_Image_ydl1o3ydl1o3ydl1.png');
+                addToCart('Chamomile Bright Cleanser', 10.00, 'Gemini_Generated_Image_xy32e6xy32e6xy32.png');
             }
         }
         
