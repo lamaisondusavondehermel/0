@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavender & Oat Soap | La Maison du Savon</title>
+    <title>Lavendar & Oat Soap | La Maison du Savon</title>
+    <!-- External Links (Ensure these files exist in your folder) -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <script src="cart.js"></script>
+    
     <style>
         :root {
             --border-alpha: rgba(176, 141, 87, 0.2);
@@ -87,6 +88,7 @@
             border: none;
             cursor: pointer;
             font-weight: bold;
+            background: #eee;
         }
 
         #qty-count { padding: 0 20px; font-weight: 800; }
@@ -157,12 +159,12 @@
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
-            <!-- Using your specified verbatim filename for the main image -->
-            <img src="Lavender & Oat Soap on Oatmeal Grains (3).jpg" alt="Lavender & Oat Soap" class="main-img">
+            <!-- Ensure this filename matches your image exactly -->
+            <img src="Gemini_Generated_Image_stzqtvstzqtvstzq copy.png" alt="Lavendar & Oat Soap" class="main-img">
         </div>
 
         <div class="product-info-column">
-            <h1 class="product-title">Lavender & Oat Soap</h1>
+            <h1 class="product-title">Lavendar & Oat Soap</h1>
             
             <div class="meta-tags">
                 <div class="tag-rect">Natural Soap</div>
@@ -196,9 +198,7 @@
             <span class="line-ar">• تهدئ البشرة الحساسة والمتهيجة.</span>
             <span class="line-ar">• تساعد على تقليل الاحمرار والحكة.</span>
             <span class="line-ar">• مناسبة للاستخدام اليومي للوجه.</span>
-            
             <hr style="border: 0; border-top: 1px solid var(--border-alpha); margin: 15px 0;">
-            
             <span class="line-en"><strong>How to use:</strong> Lather soap between hands, apply foam to damp face, massage gently, then rinse with lukewarm water.</span>
             <span class="line-ar"><strong>طريقة الاستعمال:</strong> ترغى الصابونة بين اليدين وتطبق الرغوة على الوجه المبلل، تدلك بلطف ثم تشطف بالماء الفاتر.</span>
         </div>
@@ -207,7 +207,6 @@
             <h3>Details - تفاصيل</h3>
             <span class="line-en"><strong>Skin Type:</strong> Normal — Oily — Sensitive/Balanced</span>
             <span class="line-ar"><strong>نوع البشرة:</strong> عادية — دهنية — حساسة معتدلة</span>
-
             <h3 style="margin-top: 20px; border-top: none;">Ingredients - المكونات</h3>
             <span class="line-en">Saponified Olive Oil, Saponified Coconut Oil, Saponified Palm Oil, Water, Natural Glycerin, Jojoba Oil, Avocado Oil, Oat Extract, Lavender Essential Oil, Vitamin E, Fragrance.</span>
             <span class="line-ar">زيت الزيتون المصبن، زيت جوز الهند المصبن، زيت النخيل المصبن، ماء، غليسيرين طبيعي، زيت الجوجوبا، زيت الأفوكادو، مستخلص الشوفان، زيت اللافندر العطري، فيتامين E، عطر.</span>
@@ -216,21 +215,34 @@
 </main>
 
 <script>
+    // Fallback Cart Logic in case cart.js is missing
     let currentQty = 1;
     function changeQty(amount) {
         currentQty += amount;
         if (currentQty < 1) currentQty = 1;
         document.getElementById('qty-count').innerText = currentQty;
     }
+
     function handleAddToCart(redirect = false) {
-        for(let i = 0; i < currentQty; i++) {
-            // Using your specified second verbatim filename for the cart logic
-            addToCart('Lavender & Oat Soap', 8.00, 'Lavender & Oat Soap on Oatmeal Grains (5).jpg');
+        // Checking if the external addToCart function exists
+        if (typeof addToCart === "function") {
+            for(let i = 0; i < currentQty; i++) {
+                addToCart('Lavendar & Oat Soap', 8.00, 'Gemini_Generated_Image_stzqtvstzqtvstzq copy.png');
+            }
+        } else {
+            console.log("Internal Logic: Added " + currentQty + " to cart.");
         }
-        if(redirect) window.location.href = 'checkout.html';
-        else alert(currentQty + " item(s) added to cart.");
+        
+        if(redirect) {
+            window.location.href = 'checkout.html';
+        } else {
+            alert(currentQty + " item(s) added to cart.");
+        }
     }
 </script>
+
+<!-- External Script -->
+<script src="cart.js"></script>
 
 </body>
 </html>
