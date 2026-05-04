@@ -265,7 +265,10 @@
         if(redirect) {
             window.location.href = 'checkout.html';
         } else {
-            alert(currentQty + " item(s) added to cart.");
+            // نأمر الموقع بإظهار الرسالة الصغيرة الأنيقة
+            if (typeof showNotification === "function") {
+                showNotification(currentQty + " item(s) added to your ritual");
+            }
         }
     }
 </script>

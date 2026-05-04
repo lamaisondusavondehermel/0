@@ -264,8 +264,14 @@
                 addToCart('Hand Cream', 6.00, 'WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg');
             }
         }
-        if(redirect) window.location.href = 'checkout.html';
-        else alert(currentQty + " item(s) added to cart.");
+        if(redirect) {
+            window.location.href = 'checkout.html';
+        } else {
+            // نأمر الموقع بإظهار الرسالة الصغيرة الأنيقة
+            if (typeof showNotification === "function") {
+                showNotification(currentQty + " item(s) added to your ritual");
+            }
+        };
     }
 </script>
 

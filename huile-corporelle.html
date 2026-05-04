@@ -264,8 +264,14 @@
                 addToCart('Rose Body Oil', 5.00, 'Gemini_Generated_Image_e2s9iie2s9iie2s9.png');
             }
         }
-        if(redirect) window.location.href = 'checkout.html';
-        else alert(currentQty + " item(s) added to cart.");
+        if(redirect) {
+            window.location.href = 'checkout.html';
+        } else {
+            // نأمر الموقع بإظهار الرسالة الصغيرة الأنيقة
+            if (typeof showNotification === "function") {
+                showNotification(currentQty + " item(s) added to your ritual");
+            }
+        };
     }
 </script>
 

@@ -85,8 +85,14 @@
     function changeQty(amount) { currentQty = Math.max(1, currentQty + amount); document.getElementById('qty-count').innerText = currentQty; }
     function handleAddToCart(redirect = false) { 
         if (typeof addToCart === "function") { addToCart('Rose Body Lotion', 12.00, 'Gemini_Generated_Image_1jvbfw1jvbfw1jvb.png', currentQty); }
-        if(redirect) window.location.href = 'checkout.html';
-        else alert(currentQty + " item(s) added to cart.");
+       if(redirect) {
+            window.location.href = 'checkout.html';
+        } else {
+            // نأمر الموقع بإظهار الرسالة الصغيرة الأنيقة
+            if (typeof showNotification === "function") {
+                showNotification(currentQty + " item(s) added to your ritual");
+            }
+        };
     }
 </script>
 </body>

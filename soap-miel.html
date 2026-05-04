@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hair Serum | La Maison du Savon</title>
+    <title>Honey & Frankincense Soap | La Maison du Savon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <script src="cart.js"></script>
@@ -204,15 +204,15 @@
 <main class="main-wrapper">
     <section class="product-hero">
         <div class="image-stage">
-            <img src="Gemini_Generated_Image_op021pop021pop02.png" alt="Scalp Hair Serum" class="main-img">
+            <img src="Gemini_Generated_Image_uyccwmuyccwmuycc.png" alt="Honey & Frankincense Soap" class="main-img">
         </div>
 
         <div class="product-info-column">
-            <h1 class="product-title">Scalp Hair Serum</h1>
+            <h1 class="product-title">Honey & Frankincense Soap</h1>
             
             <div class="meta-tags">
-                <div class="tag-rect">30 ml</div>
-                <div class="tag-rect price-tag">$9.00</div>
+                <div class="tag-rect">100 g</div>
+                <div class="tag-rect price-tag">$7.00</div>
             </div>
 
             <div class="qty-selector">
@@ -221,8 +221,8 @@
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
 
-            <div class="desc-english">A lightweight, water-based serum designed to work directly on the scalp. It stimulates blood circulation, balances the scalp, and treats dandruff without clogging pores.</div>
-            <div class="desc-arabic">سيروم فروة رأس مائي مصمم ليشتغل مباشرة على الفروة. ينشط الدورة الدموية، يوازن الفروة، ويعالج القشرة. خفيف، يُترك، ولا يسد المسام.</div>
+            <div class="desc-english">A natural masterpiece that combines the deep moisturizing power of pure honey with the skin-rejuvenating properties of premium Frankincense. It clarifies the complexion and fights signs of aging naturally.</div>
+            <div class="desc-arabic">منتج طبيعي يجمع بين قوة الترطيب العميق للعسل الصافي وخصائص لبان الذكر الفاخر في تجديد خلايا البشرة؛ تعمل على تصفية الوجه ومحاربة علامات الشيخوخة بشكل طبيعي.</div>
 
             <div class="action-stack" style="width: 100%; margin-top: 10px;">
                 <button class="btn-luxury btn-atc" onclick="handleAddToCart()">Add to Cart</button>
@@ -234,14 +234,14 @@
     <section class="godly-details">
         <div class="detail-card">
             <h3> How to Use - طريقة الاستخدام </h3>
-            <span class="line-en">Apply directly to the scalp and leave in. Suitable for daily use. A slight tingling sensation for the first few minutes is normal and indicates natural scalp stimulation.</span>
-            <span class="line-ar">يُترك على الفروة ومناسب للاستخدام اليومي. تنميل خفيف أو إحساس حركة أول دقائق هيدا تنشيط طبيعي للفروة.</span>
+            <span class="line-en">Lather the soap between your hands. Gently massage onto damp face or body for 60 seconds, then rinse with lukewarm water. Use daily.</span>
+            <span class="line-ar">ارغي الصابونة بين يديك، دلكي الوجه أو الجسم المبلل بلطف لمدة 60 ثانية، ثم اشطفي بالماء الفاتر. تُستخدم يومياً لنتائج مثالية.</span>
         </div>
 
         <div class="detail-card">
             <h3>Ingredients - المكونات</h3>
-            <span class="line-en">100% natural water-based formula. Contains specialized scalp stimulants and growth stabilizers. Free from parabens, silicones, and mineral oils.</span>
-            <span class="line-ar">تركيبة مائية طبيعية 100%. تحتوي على محفزات متخصصة للفروة ومثبتات للنم، غنية بزيوت بذور اليقطين، ذيل الحصان، شجرة الشاي، والجنسنغ. خالية من البارابين والسيليكون والزيوت المعدنية.</span>
+            <span class="line-en">Organic Raw Honey, Premium Frankincense Resin Oil, Extra Virgin Olive Oil, Coconut Oil, and Glycerin. 100% Handcrafted and Natural.</span>
+            <span class="line-ar">عسل خام عضوي، زيت لبان ذكر فاخر، زيت زيتون، زيت جوز هند، وجلسرين نباتي. منتج يدوي وطبيعي 100%.</span>
         </div>
     </section>
 </main>
@@ -256,15 +256,15 @@
 
     function handleAddToCart(redirect = false) {
         if (typeof addToCart === "function") {
+            // إضافة المنتج حسب العدد المختار
             for(let i = 0; i < currentQty; i++) {
-                addToCart('Scalp Hair Serum', 9.00, 'Gemini_Generated_Image_op021pop021pop02.png');
+                addToCart('Honey & Frankincense Soap', 7.00, 'Gemini_Generated_Image_uyccwmuyccwmuycc.png');
             }
         }
         
         if(redirect) {
             window.location.href = 'checkout.html';
         } else {
-            // نأمر الموقع بإظهار الرسالة الصغيرة الأنيقة
             if (typeof showNotification === "function") {
                 showNotification(currentQty + " item(s) added to your ritual");
             }

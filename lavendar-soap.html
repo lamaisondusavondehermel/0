@@ -271,6 +271,11 @@
         
         if(redirect) {
             window.location.href = 'checkout.html';
+        } else {
+            // نأمر الموقع بإظهار الرسالة الصغيرة الأنيقة
+            if (typeof showNotification === "function") {
+                showNotification(currentQty + " item(s) added to your ritual");
+            }
         }
     }
 </script>

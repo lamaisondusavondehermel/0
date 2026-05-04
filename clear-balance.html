@@ -256,8 +256,14 @@
                 addToCart('Clear Balance Cleanser', 10.00, 'Gemini_Generated_Image_xy32e6xy32e6xy32 (2).png');
             }
         }
-        if(redirect) { window.location.href = 'checkout.html'; } 
-        else { alert(currentQty + " item(s) added to cart."); }
+        if(redirect) {
+            window.location.href = 'checkout.html';
+        } else {
+            // نأمر الموقع بإظهار الرسالة الصغيرة الأنيقة
+            if (typeof showNotification === "function") {
+                showNotification(currentQty + " item(s) added to your ritual");
+            }
+        }
     }
 </script>
 
