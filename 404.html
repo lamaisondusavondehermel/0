@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found | La Maison du Savon de Hermel</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#F7F2EA">
+  <script>
+    // Hosts like GitHub Pages and Netlify show this page for any missing address.
+    // Product pages moved into /products and were renamed, so old links are forwarded.
+    (function () {
+      var moved = {
+        "huile-capillaire.html": "products/rosemary-hair-oil.html",
+        "huile-corporelle.html": "products/rose-body-oil.html",
+        "creme-mains.html": "products/hand-cream.html",
+        "hand-cream.html": "products/hand-cream.html",
+        "face-cream.html": "products/eclat-face-cream.html",
+        "lavendar-soap.html": "products/lavender-oat-soap.html",
+        "soap-miel.html": "products/honey-frankincense-soap.html",
+        "miel-creme.html": "products/honey-frankincense-cream.html",
+        "lip-balm.html": "products/lip-balm.html",
+        "hair-serum.html": "products/scalp-hair-serum.html",
+        "bright.html": "products/chamomile-bright-cleanser.html",
+        "chamomile-cleanser.html": "products/chamomile-bright-cleanser.html",
+        "rosy-repair.html": "products/rosy-repair-cleanser.html",
+        "clear-balance.html": "products/clear-balance-cleanser.html",
+        "rose-lotion.html": "products/rose-body-lotion.html",
+        "white-musk.html": "products/white-musk-body-lotion.html",
+        "white-musk-lotion.html": "products/white-musk-body-lotion.html",
+        "strawberry-lotion.html": "products/strawberry-body-lotion.html",
+        "vanille-lotion.html": "products/vanilla-body-lotion.html",
+        "vanilla-lotion.html": "products/vanilla-body-lotion.html",
+        "checkout.html": "cart.html"
+      };
+      var path = window.location.pathname;
+      var file = path.slice(path.lastIndexOf("/") + 1).toLowerCase();
+      var base = path.slice(0, path.lastIndexOf("/") + 1).replace(/products\/$/, "");
+      window.siteBase = base;
+      if (moved[file]) window.location.replace(base + moved[file] + window.location.search + window.location.hash);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=DM+Sans:wght@400;600&amp;family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&amp;display=swap">
+  <style>
+    :root { --bg: #F7F2EA; --ink: #24221D; --ink-2: #5B5447; --olive-100: #E6EBDD; --olive-500: #5E6F4D; --olive-700: #43513A; --plum-700: #6E2433; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      line-height: 1.6;
+      text-align: center;
+    }
+    main { max-width: 520px; }
+    svg { width: 132px; height: 132px; margin: 0 auto 8px; display: block; }
+    .code { margin: 0; font-family: "Fraunces", serif; font-size: 5rem; font-style: italic; font-weight: 300; line-height: 1; color: var(--olive-500); }
+    h1 { margin: 12px 0 0; font-family: "Fraunces", serif; font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; }
+    p { margin: 12px 0 0; color: var(--ink-2); }
+    [lang="ar"] { font-family: "Amiri", serif; font-size: 1.25rem; color: var(--plum-700); }
+    a {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 28px;
+      min-height: 52px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: var(--olive-700);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    a:hover { background: #2C3526; transform: translateY(-2px); }
+    a:focus-visible { outline: 2px solid var(--olive-500); outline-offset: 3px; }
+    .leaf { animation: sway 5s ease-in-out infinite; transform-origin: 66px 100px; }
+    @keyframes sway { 50% { transform: rotate(-6deg); } }
+    @media (prefers-reduced-motion: reduce) { .leaf { animation: none; } a { transition: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <svg viewBox="0 0 132 132" aria-hidden="true">
+      <circle cx="66" cy="66" r="62" fill="#E6EBDD"/>
+      <g class="leaf" fill="#D3DBC6" stroke="#43513A" stroke-width="2" stroke-linejoin="round">
+        <path d="M66 100C44 88 40 62 58 34c20 22 24 48 8 66Z"/>
+        <path d="M66 100c-3-20-4-38-8-60" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <p class="code">404</p>
+    <h1>This page has wandered off.</h1>
+    <p>The page you’re looking for doesn’t exist or has moved. Let’s get you back to the collection.</p>
+    <p lang="ar" dir="rtl">الصفحة غير موجودة. لنعد إلى المتجر.</p>
+    <a id="home-link" href="/">Back to the shop</a>
+  </main>
+  <script>
+    document.getElementById("home-link").href = (window.siteBase || "/") + "index.html";
+  </script>
+</body>
+</html>

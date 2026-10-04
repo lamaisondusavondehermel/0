@@ -1,513 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Maison du Savon de Hermel</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --soft-cream: #fcfaf8;
-            --deep-earth: #3e2723;
-            --gold-leaf: #b08d57;
-            --border-light: rgba(176, 141, 87, 0.15);
-            --glass-white: rgba(255, 255, 255, 0.85);
-        }
-
-        body {
-            background-color: var(--soft-cream);
-            color: var(--deep-earth);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* --- IMMERSIVE VISUAL COVER HEADER --- */
-        header {
-            position: relative;
-            height: 75vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
-                        url('WhatsApp Image 2025-12-28 at 11.00.29 AM (2).jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* أيقونة السلة العلوية */
-        .top-cart {
-            position: absolute;
-            top: 30px;
-            right: 50px;
-            font-size: 1.8em;
-            text-decoration: none;
-            z-index: 10;
-            transition: 0.3s;
-        }
-        .top-cart:hover { transform: scale(1.1); }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 40px 60px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            max-width: 90%;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            background: white;
-            padding: 8px;
-            border-radius: 50%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        .header-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2em;
-            margin: 0;
-            letter-spacing: -1.5px;
-            color: var(--deep-earth);
-            line-height: 1.1;
-        }
-
-        .header-text p {
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-weight: 700;
-            color: var(--gold-leaf);
-            margin-top: 15px;
-            font-size: 0.8em;
-        }
-
-        /* --- STICKY NAVIGATION BAR --- */
-        .category-filter {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            padding: 20px;
-            background: var(--glass-white);
-            backdrop-filter: blur(15px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-light);
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: white;
-            border: 1px solid var(--border-light);
-            padding: 10px 22px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-            color: var(--deep-earth);
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--deep-earth);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* --- PRODUCT GALLERY --- */
-        .gallery-wrapper {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 40px;
-        }
-
-        .product-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 40px;
-            justify-content: center;
-            justify-items: center;
-        }
-
-        .product-link { 
-            text-decoration: none; 
-            color: inherit; 
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 30px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.2, 1, 0.2, 1);
-            border: 1px solid transparent;
-            max-width: 350px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .product-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--border-light);
-            box-shadow: 0 25px 50px rgba(62, 39, 35, 0.07);
-        }
-
-        .product-card img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        .product-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6em;
-            margin: 10px 0 5px;
-        }
-
-        .arabic-name {
-            display: block;
-            font-family: 'Amiri', serif;
-            font-size: 1.3em;
-            color: var(--gold-leaf);
-            margin-bottom: 15px;
-            direction: rtl;
-        }
-
-        .product-meta {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            border-top: 1px solid #f9f4ef;
-            padding-top: 15px;
-            margin-top: 5px;
-        }
-
-        .quantity { font-size: 0.9em; color: #999; font-weight: 500; }
-        .price { font-size: 1.2em; color: var(--deep-earth); font-weight: 800; }
-
-        .hide-product { display: none; }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--deep-earth);
-            color: #d2c4b9;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        footer h2 { font-family: 'Playfair Display', serif; font-size: 2.2em; color: white; margin-bottom: 20px; }
-        footer a { color: var(--gold-leaf); text-decoration: none; }
-
-        @media (max-width: 768px) {
-            header { height: 60vh; } 
-            .header-text h1 { font-size: 2.2em; }
-            .top-cart { right: 20px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Maison du Savon de Hermel — Handmade natural soaps &amp; skincare</title>
+  <meta name="description" content="Handcrafted natural soaps, oils, creams and lotions from our atelier in Hermel, Lebanon. Cash on delivery, with every order confirmed on WhatsApp.">
+  <meta name="theme-color" content="#F7F2EA">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="La Maison du Savon de Hermel">
+  <meta property="og:title" content="La Maison du Savon de Hermel">
+  <meta property="og:description" content="Handcrafted natural soaps, oils, creams and lotions from our atelier in Hermel, Lebanon. Cash on delivery, with every order confirmed on WhatsApp.">
+  <link rel="icon" type="image/png" href="assets/images/brand/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&amp;family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&amp;display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/products.js" defer></script>
+  <script src="assets/js/cart.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
 </head>
-<body>
+<body class="page-home" data-root="">
+<a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-    <a href="cart.html" class="top-cart">🛒</a>
-    <div class="header-content">
-        <img src="cropped_circle_image (2) (1).png" alt="Logo" class="logo">
-        <div class="header-text">
-            <h1>La Maison du Savon de Hermel</h1>
-            <p>L’atelier du soin naturel</p>
-        </div>
-    </div>
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html" aria-label="La Maison du Savon de Hermel, home">
+      <img class="brand__logo" src="assets/images/brand/logo.png" alt="" width="46" height="46">
+      <span class="brand__name">La Maison du Savon<small>de Hermel</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#shop">Shop</a>
+      <a href="#story">Our story</a>
+      <a href="#order">How to order</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cart-button" href="cart.html" data-cart-link aria-label="Cart">
+      <svg class="icon icon-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+      <span class="cart-button__count" data-cart-count hidden>0</span>
+    </a>
+  </div>
 </header>
 
-<main>
-    <nav class="category-filter">
-        <button class="filter-btn active" data-filter="all">All Products</button>
-        <button class="filter-btn" data-filter="soap">Natural Soaps</button>
-        <button class="filter-btn" data-filter="face">Face Products</button>
-        <button class="filter-btn" data-filter="hair">Hair Products</button>
-        <button class="filter-btn" data-filter="body">Body Products</button>
-    </nav>
-
-    <div class="gallery-wrapper">
-        <div class="product-gallery">
-
-            <!-- Rosemary Hair Oil -->
-            <a href="huile-capillaire.html" class="product-link">
-                <div class="product-card">
-                    <img src="Gemini_Generated_Image_amsswtamsswtamss.png" alt="Rosemary Hair Oil">
-                    <h3>Rosemary Hair Oil</h3>
-                    <span class="arabic-name">زيت اكليل الجبل للشعر</span>
-                    <div class="product-meta">
-                        <span class="quantity">30ml</span>
-                        <span class="price">$8.00</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Rose Body Oil -->
-            <a href="huile-corporelle.html" class="product-link">
-                <div class="product-card">
-                    <img src="Gemini_Generated_Image_e2s9iie2s9iie2s9.png" alt="Rose Body Oil">
-                    <h3>Rose Body Oil</h3>
-                    <span class="arabic-name">زيت الورد للجسم</span>
-                    <div class="product-meta">
-                        <span class="quantity">30ml</span>
-                        <span class="price">$5.00</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Hand Cream -->
-            <a href="creme-mains.html" class="product-link">
-                <div class="product-card">
-                    <img src="WhatsApp Image 2025-12-28 at 11.00.28 AM (1).jpeg" alt="Hand Cream">
-                    <h3>Hand Cream</h3>
-                    <span class="arabic-name">كريم اليدين</span>
-                    <div class="product-meta">
-                        <span class="quantity">50ml</span>
-                        <span class="price">$6.00</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Face Cream -->
-            <a href="face-cream.html" class="product-link">
-                <div class="product-card">
-                    <img src="WhatsApp Image 2025-12-28 at 11.00.29 AM (1).jpeg" alt="Face Cream">
-                    <h3>Face Cream</h3>
-                    <span class="arabic-name">كريم فائق الترطيب</span>
-                    <div class="product-meta">
-                        <span class="quantity">50ml</span>
-                        <span class="price">$10.00</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Lavender & Oat Soap -->
-            <a href="lavendar-soap.html" class="product-link">
-                <div class="product-card">
-                    <img src="Gemini_Generated_Image_stzqtvstzqtvstzq copy.png" alt="Lavender & Oat Soap">
-                    <h3>Lavender & Oat Soap</h3>
-                    <span class="arabic-name">صابونة اللافندر والشوفان</span>
-                    <div class="product-meta">
-                        <span class="quantity">100 gr</span>
-                        <span class="price">$8.00</span>
-                    </div>
-                </div>
-            </a>
-            <a href="soap-miel.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_uyccwmuyccwmuycc.png" alt="Honey & Frankincense Soap">
-        <h3>Honey & Frankincense Soap</h3>
-        <span class="arabic-name">صابونة العسل ولبان الذكر</span>
-        <div class="product-meta">
-            <span class="quantity">100g</span>
-            <span class="price">$7.00</span>
-        </div>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob blob--sage"></span>
+      <span class="blob blob--blush"></span>
     </div>
-</a>
-            <!-- Miel et Encens Cream -->
-<a href="miel-creme.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_ydl1o3ydl1o3ydl1 copy.png" alt="Miel et Encens Cream">
-        <h3>Honey & Frankincense Cream</h3>
-        <span class="arabic-name">كريم لبان الذكر والعسل</span>
-        <div class="product-meta">
-            <span class="quantity">50 g</span>
-            <span class="price">$9.00</span>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow" data-animate style="--i:0">L’atelier du soin naturel</p>
+        <h1 class="hero__title" id="hero-title" data-animate style="--i:1">Natural care, <em>handcrafted</em> in Hermel.</h1>
+        <p class="hero__ar" lang="ar" dir="rtl" data-animate style="--i:2">عناية طبيعية مصنوعة يدوياً في الهرمل</p>
+        <p class="hero__lead" data-animate style="--i:3">Soaps, oils and creams made by hand with botanical ingredients: olive oil, shea butter, jojoba, damask rose, frankincense and honey.</p>
+        <div class="hero__actions" data-animate style="--i:4">
+          <a class="btn btn--primary" href="#shop">Shop the collection<svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="#order">How to order</a>
         </div>
-    </div>
-</a>
+        <ul class="hero__perks" data-animate style="--i:5">
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5h.01M18 14.5h.01"/></svg>Cash on delivery</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6.5h11v9.5h-11zM13.5 10h4l3 3.2V16h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><span data-delivery-fee>$4</span> flat delivery</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.5l1.6-4.5A8.4 8.4 0 1 1 20.5 11.6Z"/><path d="M8.6 11.6h.01M12 11.6h.01M15.4 11.6h.01"/></svg>Confirmed on WhatsApp</li>
+        </ul>
+      </div>
 
-<!-- Lip Balm -->
-<a href="lip-balm.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_hsc3lqhsc3lqhsc3.png" alt="Lip Balm">
-        <h3>Lip Balm</h3>
-        <span class="arabic-name">مرطب شفاه</span>
-        <div class="product-meta">
-            <span class="quantity">4.5 ml</span>
-            <span class="price">$4.00</span>
+      <div class="hero__visual" data-animate style="--i:2">
+        <div class="hero__arch">
+          <img src="assets/images/brand/hero-ingredients.jpg" alt="Natural ingredients on a table: lavender, rosemary, chamomile, rose buds, shea butter and botanical oils" width="1024" height="843" fetchpriority="high">
         </div>
+        <div class="hero__badge" aria-hidden="true">
+          <svg class="hero__badge-ring" viewBox="0 0 136 136">
+            <defs><path id="badge-circle" d="M68,68 m-54,0 a54,54 0 1,1 108,0 a54,54 0 1,1 -108,0"/></defs>
+            <text><textPath href="#badge-circle" textLength="337" lengthAdjust="spacing">LA MAISON DU SAVON · DE HERMEL ·</textPath></text>
+          </svg>
+          <img class="hero__badge-logo" src="assets/images/brand/logo.png" alt="" width="74" height="74">
+        </div>
+        <a class="hero__float" href="products/lavender-oat-soap.html" style="--tint:#EAE4EF">
+          <span class="hero__float-thumb"><img src="assets/images/products/lavender-oat-soap.jpg" alt="" width="864" height="1184"></span>
+          <span>
+            <strong>Lavender &amp; Oat Soap</strong>
+            <small><span data-price-of="lavender-oat-soap">$8.00</span> <span>· Natural soap</span></small>
+          </span>
+        </a>
+      </div>
     </div>
-</a>
+  </section>
 
-<!-- Hair Serum -->
-<a href="hair-serum.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_op021pop021pop02.png" alt="Hair Serum">
-        <h3>Hair Serum</h3>
-        <span class="arabic-name">سيروم الشعر</span>
-        <div class="product-meta">
-            <span class="quantity">30 ml</span>
-            <span class="price">$12.00</span>
-        </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span class="marquee__item">Olive oil</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Shea butter</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Rosemary</span><span class="marquee__sep"></span>
+        <span class="marquee__item" lang="ar" dir="rtl">إكليل الجبل</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Lavender</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Damask rose</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Jojoba</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Frankincense</span><span class="marquee__sep"></span>
+        <span class="marquee__item" lang="ar" dir="rtl">لبان الذكر</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Chamomile</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Oat</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Sweet almond</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Honey</span><span class="marquee__sep"></span>
+        <span class="marquee__item" lang="ar" dir="rtl">العسل</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Aloe vera</span><span class="marquee__sep"></span>
+      </div>
+      <div class="marquee__group">
+        <span class="marquee__item">Olive oil</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Shea butter</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Rosemary</span><span class="marquee__sep"></span>
+        <span class="marquee__item" lang="ar" dir="rtl">إكليل الجبل</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Lavender</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Damask rose</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Jojoba</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Frankincense</span><span class="marquee__sep"></span>
+        <span class="marquee__item" lang="ar" dir="rtl">لبان الذكر</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Chamomile</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Oat</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Sweet almond</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Honey</span><span class="marquee__sep"></span>
+        <span class="marquee__item" lang="ar" dir="rtl">العسل</span><span class="marquee__sep"></span>
+        <span class="marquee__item">Aloe vera</span><span class="marquee__sep"></span>
+      </div>
     </div>
-</a>
-<!-- 1. Chamomile Bright Cleanser -->
-<a href="chamomile-cleanser.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_xy32e6xy32e6xy32.png" alt="Chamomile Bright Cleanser">
-        <h3>Chamomile Bright Cleanser</h3>
-        <span class="arabic-name">غسول البابونج المفتح</span>
-        <div class="product-meta">
-            <span class="quantity">100 ml</span>
-            <span class="price">$10.00</span>
-        </div>
-    </div>
-</a>
+  </div>
 
-<!-- 2. Rosy Repair Cleanser -->
-<a href="rosy-repair.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_xy32e6xy32e6xy32 (1).png" alt="Rosy Repair Cleanser">
-        <h3>Rosy Repair Cleanser</h3>
-        <span class="arabic-name">غسول الورد للترميم</span>
-        <div class="product-meta">
-            <span class="quantity">100 ml</span>
-            <span class="price">$10.00</span>
-        </div>
+  <section class="section shop" id="shop" aria-labelledby="shop-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">The collection · <span lang="ar" dir="rtl">مجموعتنا</span></p>
+        <h2 class="section-title" id="shop-title">Rituals for face, hair <em>&amp; body</em></h2>
+        <p class="section-lead">Every soap, oil and cream is made by hand in our atelier. Tap a product to discover its ingredients and how to use it, or press “+” to add it straight to your cart.</p>
+      </div>
+      <div class="filters" data-filters role="group" aria-label="Filter products by category"></div>
+      <p class="sr-only" aria-live="polite" data-filter-status></p>
+      <div class="product-grid" data-product-grid></div>
+      <noscript><p class="shop__empty">Please enable JavaScript to browse the collection and place an order.</p></noscript>
     </div>
-</a>
+  </section>
 
-<!-- 3. Clear Balance Cleanser -->
-<a href="clear-balance.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_xy32e6xy32e6xy32 (2).png" alt="Clear Balance Cleanser">
-        <h3>Clear Balance Cleanser</h3>
-        <span class="arabic-name">غسول التوازن والصفاء</span>
-        <div class="product-meta">
-            <span class="quantity">100 ml</span>
-            <span class="price">$10.00</span>
-        </div>
+  <section class="section section--sand story" id="story" aria-labelledby="story-title">
+    <div class="container story__inner">
+      <figure class="story__media" data-reveal>
+        <img src="assets/images/products/lavender-oat-soap-lifestyle.jpg" alt="A bar of Lavender &amp; Oat soap resting on oat flakes, surrounded by lavender sprigs" width="1080" height="1350" loading="lazy">
+        <figcaption class="story__caption">Lavender &amp; Oat Soap</figcaption>
+      </figure>
+      <div class="story__copy" data-reveal style="--reveal-delay:120ms">
+        <p class="eyebrow">Our atelier · <span lang="ar" dir="rtl">مشغلنا</span></p>
+        <h2 class="section-title" id="story-title">Made by hand, <em>with care</em>, in Hermel.</h2>
+        <p class="story__text">At La Maison du Savon de Hermel, every bar of soap, every oil and every cream is prepared by hand in our atelier. We work with ingredients we trust — olive oil, shea butter, jojoba, damask rose, frankincense and honey — in simple formulas for face, hair and body.</p>
+        <p class="story__ar" lang="ar" dir="rtl">في مشغلنا في الهرمل، نحضّر كل صابونة وكل زيت وكل كريم يدوياً، بمكونات طبيعية نثق بها: زيت الزيتون، زبدة الشيا، الجوجوبا، الورد الدمشقي، لبان الذكر والعسل.</p>
+        <ul class="features">
+          <li class="feature">
+            <span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 19.5C4.5 11 10 5.2 19.5 4.5 20 14 14.5 19.5 6 19.5Z"/><path d="M4.5 19.5 13.5 10.5"/></svg></span>
+            <div><strong>Botanical ingredients</strong><span>Plant oils, butters, honey and essential oils.</span></div>
+          </li>
+          <li class="feature">
+            <span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.7 5.1 5.3 1.9-5.3 1.9L12 17.5l-1.7-5.1L5 10.5l5.3-1.9L12 3.5Z"/><path d="M18.5 15.5l.6 1.8 1.9.7-1.9.7-.6 1.8-.6-1.8-1.9-.7 1.9-.7.6-1.8Z"/></svg></span>
+            <div><strong>Handcrafted</strong><span>Each soap, oil and cream is prepared by hand in our atelier.</span></div>
+          </li>
+          <li class="feature">
+            <span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c3.6 4.3 6 7.7 6 10.6a6 6 0 0 1-12 0c0-2.9 2.4-6.3 6-10.6Z"/><path d="M9.2 14.6a2.9 2.9 0 0 0 2.8 2.6"/></svg></span>
+            <div><strong>A ritual for everyone</strong><span>Care for face, hair and body, from cleansers to lotions.</span></div>
+          </li>
+        </ul>
+      </div>
     </div>
-</a>
-<!-- 1. Rose Body Lotion -->
-<a href="rose-lotion.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_1jvbfw1jvbfw1jvb.png" alt="Rose Body Lotion">
-        <h3>Rose Body Lotion</h3>
-        <span class="arabic-name">لوشن الجسم بالورد</span>
-        <div class="product-meta">
-            <span class="quantity">250 ml</span>
-            <span class="price">$12.00</span>
-        </div>
-    </div>
-</a>
+  </section>
 
-<!-- 2. White Musk Body Lotion -->
-<a href="white-musk-lotion.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_skjhl3skjhl3skjh (1).png" alt="White Musk Body Lotion">
-        <h3>White Musk Body Lotion</h3>
-        <span class="arabic-name">لوشن الجسم بالمسك الأبيض</span>
-        <div class="product-meta">
-            <span class="quantity">250 ml</span>
-            <span class="price">$12.00</span>
-        </div>
+  <section class="section steps" id="order" aria-labelledby="order-title">
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal>
+        <p class="eyebrow">How to order · <span lang="ar" dir="rtl">طريقة الطلب</span></p>
+        <h2 class="section-title" id="order-title">Simple, personal, <em>cash on delivery</em>.</h2>
+      </div>
+      <ol class="steps__list">
+        <li class="step" data-reveal>
+          <span class="step__num">01</span>
+          <span class="icon-tile"><svg class="icon icon-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+          <h3>Choose your favourites</h3>
+          <p>Add products to your cart from the collection, or open a product to read about it first.</p>
+          <p class="step__ar" lang="ar" dir="rtl">اختاروا منتجاتكم المفضلة وأضيفوها إلى السلة.</p>
+        </li>
+        <li class="step" data-reveal style="--reveal-delay:120ms">
+          <span class="step__num">02</span>
+          <span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+          <h3>Share your details</h3>
+          <p>At checkout, tell us your delivery address and your WhatsApp number.</p>
+          <p class="step__ar" lang="ar" dir="rtl">أدخلوا عنوانكم ورقم الواتساب عند إتمام الطلب.</p>
+        </li>
+        <li class="step" data-reveal style="--reveal-delay:240ms">
+          <span class="step__num">03</span>
+          <span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5h.01M18 14.5h.01"/></svg></span>
+          <h3>Pay on delivery</h3>
+          <p>We confirm your order on WhatsApp and deliver it for a flat <span data-delivery-fee>$4</span>. You pay in cash when it arrives.</p>
+          <p class="step__ar" lang="ar" dir="rtl">نؤكد طلبكم عبر واتساب، والدفع نقداً عند الاستلام.</p>
+        </li>
+      </ol>
+      <div class="steps__cta" data-reveal>
+        <a class="btn btn--primary" href="#shop">Start shopping<svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
-</a>
-
-<!-- 3. Strawberry Body Lotion -->
-<a href="strawberry-lotion.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_skjhl3skjhl3skjh (2).png" alt="Strawberry Body Lotion">
-        <h3>Strawberry Body Lotion</h3>
-        <span class="arabic-name">لوشن الجسم بالفراولة</span>
-        <div class="product-meta">
-            <span class="quantity">250 ml</span>
-            <span class="price">$12.00</span>
-        </div>
-    </div>
-</a>
-
-<!-- 4. Vanilla Body Lotion -->
-<a href="vanilla-lotion.html" class="product-link">
-    <div class="product-card">
-        <img src="Gemini_Generated_Image_skjhl3skjhl3skjh.png" alt="Vanilla Body Lotion">
-        <h3>Vanilla Body Lotion</h3>
-        <span class="arabic-name">لوشن الجسم بالفانيليا</span>
-        <div class="product-meta">
-            <span class="quantity">250 ml</span>
-            <span class="price">$12.00</span>
-        </div>
-    </div>
-</a>
-        </div>
-    </div>
+  </section>
 </main>
 
-<footer>
-    <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:lamaisondusavondehermel@gmail.com">lamaisondusavondehermel@gmail.com</a></p>
-    <p style="margin-top: 10px;">Telephone: +961 70 514 786</p>
-    <div style="margin-top: 50px; opacity: 0.4; font-size: 0.75em; letter-spacing: 2px;">
-        © LA MAISON DU SAVON DE HERMEL
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta" data-reveal>
+      <div>
+        <h2 class="footer-cta__title">Questions about a product? <em>We’d love to help.</em></h2>
+        <p class="footer-cta__ar" lang="ar" dir="rtl">نحن هنا للإجابة على جميع أسئلتكم</p>
+      </div>
+      <div class="footer-cta__actions">
+        <a class="btn btn--light" href="https://wa.me/96170514786" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.5l1.6-4.5A8.4 8.4 0 1 1 20.5 11.6Z"/><path d="M8.6 11.6h.01M12 11.6h.01M15.4 11.6h.01"/></svg>WhatsApp us</a>
+        <a class="btn btn--outline-light" href="mailto:lamaisondusavondehermel@gmail.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>Email us</a>
+      </div>
     </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/brand/logo.png" alt="" width="64" height="64" loading="lazy">
+        <p class="footer-brand__name">La Maison du Savon de Hermel</p>
+        <p class="footer-brand__tag">L’atelier du soin naturel · <span lang="ar" dir="rtl">مشغل العناية الطبيعية</span></p>
+      </div>
+      <nav class="footer-col" aria-label="Shop by category">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="?category=soap#shop">Natural soaps</a></li>
+          <li><a href="?category=face#shop">Face</a></li>
+          <li><a href="?category=hair#shop">Hair</a></li>
+          <li><a href="?category=body#shop">Body</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:lamaisondusavondehermel@gmail.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>lamaisondusavondehermel@gmail.com</a></li>
+          <li><a href="tel:+96170514786"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16.4v2.9a1.9 1.9 0 0 1-2.1 1.9 18.8 18.8 0 0 1-8.2-2.9 18.5 18.5 0 0 1-5.7-5.7A18.8 18.8 0 0 1 2.1 4.4 1.9 1.9 0 0 1 4 2.3h2.9a1.9 1.9 0 0 1 1.9 1.6c.1.9.3 1.8.7 2.7a1.9 1.9 0 0 1-.4 2L7.8 9.8a15.2 15.2 0 0 0 5.7 5.7l1.2-1.2a1.9 1.9 0 0 1 2-.4c.9.3 1.8.6 2.7.7a1.9 1.9 0 0 1 1.6 1.8Z"/></svg>+961 70 514 786</a></li>
+          <li><a href="https://wa.me/96170514786" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.5l1.6-4.5A8.4 8.4 0 1 1 20.5 11.6Z"/><path d="M8.6 11.6h.01M12 11.6h.01M15.4 11.6h.01"/></svg>WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> La Maison du Savon de Hermel</span>
+      <span>Handcrafted in Hermel, Lebanon</span>
+    </div>
+  </div>
+  <p class="footer-wordmark" aria-hidden="true">Maison du Savon</p>
 </footer>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const products = document.querySelectorAll('.product-link');
-
-        // خريطة التصنيفات بناءً على أسماء الروابط الفعلية
-        const categoryMap = {
-            'lavendar-soap.html': ['face', 'soap'],
-            'hand-cream.html': ['body'],
-            'face-cream.html': ['face'],
-            'huile-corporelle.html': ['body'],
-            'huile-capillaire.html': ['hair'],
-            'hair-serum.html': ['hair'],
-            'lip-balm.html': ['face'],
-            'miel-creme.html': ['face'],
-            'rosy-repair.html': ['face'],
-            'clear-balance.html': ['face'],
-            'bright.html': ['face'],
-            'vanille-lotion.html': ['body'],
-            'strawberry-lotion.html': ['body'],
-            'rose-lotion.html': ['body'],
-            'white-musk.html': ['body'],
-            'soap-miel.html': ['face','body','soap']
-        };
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(button => button.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filterValue = btn.getAttribute('data-filter');
-
-                products.forEach(product => {
-                    const href = product.getAttribute('href');
-                    const productCategories = categoryMap[href] || [];
-                    
-                    if (filterValue === 'all' || productCategories.includes(filterValue)) {
-                        product.classList.remove('hide-product');
-                    } else {
-                        product.classList.add('hide-product');
-                    }
-                });
-            });
-        });
-    });
-</script>
 </body>
 </html>
