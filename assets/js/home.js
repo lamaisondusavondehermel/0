@@ -30,7 +30,12 @@
   bar.innerHTML =
     '<span class="filters__indicator no-anim" aria-hidden="true"></span>' +
     filters
-      .map((filter) => `<button class="chip" type="button" data-filter="${filter.id}" aria-pressed="false">${Site.escapeHtml(filter.label)}<span class="chip__count">${filter.count}</span></button>`)
+      .map((filter) => {
+        const label = filter.short
+          ? `<span class="chip__long">${Site.escapeHtml(filter.label)}</span><span class="chip__short">${Site.escapeHtml(filter.short)}</span>`
+          : Site.escapeHtml(filter.label);
+        return `<button class="chip" type="button" data-filter="${filter.id}" aria-pressed="false">${label}<span class="chip__count">${filter.count}</span></button>`;
+      })
       .join("");
 
   const indicator = bar.querySelector(".filters__indicator");

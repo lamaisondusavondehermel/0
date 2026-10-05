@@ -2,7 +2,7 @@
    La Maison du Savon de Hermel — site styles
    1. Tokens   2. Base   3. Layout   4. Components
    5. Home     6. Product page       7. Cart & checkout
-   8. Footer   9. Motion
+   8. Footer   9. Phones             10. Motion
    ===================================================================== */
 
 /* ---------- 1. Tokens ---------- */
@@ -364,9 +364,9 @@ p { margin: 0; }
   background: var(--ink);
   transition: transform 0.55s var(--ease-out), width 0.55s var(--ease-out), height 0.55s var(--ease-out);
 }
-/* Phones: chips wrap so every category stays visible */
+/* Phones: chips wrap (only if they don't fit) so every category stays visible */
 @media (max-width: 599px) {
-  .filters { flex-wrap: wrap; width: 100%; overflow: visible; border-radius: 26px; }
+  .filters { flex-wrap: wrap; overflow: visible; border-radius: 26px; }
 }
 .filters__indicator.no-anim { transition: none; }
 .chip {
@@ -715,65 +715,16 @@ p { margin: 0; }
   fill: var(--olive-700);
 }
 .hero__badge-logo { width: 74px; height: 74px; border-radius: 50%; }
-.hero__float {
-  position: absolute;
-  top: 16%; right: -28px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 18px 8px 8px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 20px;
-  background: rgba(255, 252, 247, 0.86);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-md);
-  animation: float 7s ease-in-out infinite;
-  transition: box-shadow 0.3s;
-}
-.hero__float:hover { box-shadow: var(--shadow-lg); }
-.hero__float-thumb { width: 56px; height: 56px; overflow: hidden; isolation: isolate; border-radius: 14px; background: var(--tint, var(--bg-alt)); }
-.hero__float-thumb img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
-.hero__float strong { display: block; font-family: var(--font-display); font-size: 0.98rem; font-weight: 500; line-height: 1.2; }
-.hero__float small { font-size: 0.8rem; font-weight: 600; color: var(--ink-2); }
-.hero__float small span { color: var(--ink-3); font-weight: 500; }
 @media (max-width: 959px) {
   .hero__visual { max-width: 420px; }
   .hero__badge { left: -6px; bottom: 28px; width: 112px; height: 112px; }
   .hero__badge-logo { width: 60px; height: 60px; }
-  .hero__float { right: -6px; top: 10%; }
-}
-
-/* Ingredient marquee */
-.marquee {
-  overflow: hidden;
-  padding-block: 20px;
-  background: var(--olive-900);
-  color: var(--cream);
-}
-.marquee__track { display: flex; width: max-content; animation: marquee 50s linear infinite; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
-.marquee__group { display: flex; flex: none; align-items: center; gap: 30px; padding-right: 30px; }
-.marquee__item {
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 1rem + 0.8vw, 1.6rem);
-  font-style: italic;
-  font-weight: 300;
-  white-space: nowrap;
-}
-.marquee__item[lang="ar"] { font-family: var(--font-ar); font-style: normal; font-weight: 400; color: var(--plum-300); }
-.marquee__sep {
-  width: 14px; height: 14px;
-  flex: none;
-  background: var(--gold);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 /* Shop */
-.shop__top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 32px; }
-.shop__top .section-head { margin-bottom: 28px; }
+.shop { padding-top: clamp(20px, 4vw, 56px); }
 .shop__empty { padding: 48px 0; text-align: center; color: var(--ink-2); }
+.chip__short { display: none; }
 
 /* Story */
 .story__inner { display: grid; gap: clamp(48px, 7vw, 88px); align-items: center; }
@@ -1108,7 +1059,82 @@ p { margin: 0; }
   pointer-events: none;
 }
 
-/* ---------- 9. Motion ---------- */
+/* ---------- 9. Phones: products first, compact sizes ---------- */
+@media (max-width: 759px) {
+  :root { --header-h: 60px; }
+  .site-header.is-scrolled .site-header__inner { height: 56px; }
+  .brand { gap: 10px; }
+  .brand__logo, .site-header.is-scrolled .brand__logo { width: 38px; height: 38px; }
+  .brand__name { font-size: 1rem; }
+  .cart-button { width: 42px; height: 42px; }
+
+  .section { padding-block: 48px; }
+  .section-head { margin-bottom: 24px; }
+  .section-title { font-size: 1.6rem; }
+  .section-lead { font-size: 0.95rem; }
+  .eyebrow { margin-bottom: 10px; font-size: 0.7rem; }
+
+  /* Hero: a short welcome, then straight to the products */
+  .hero { padding-block: 18px 0; }
+  .hero__inner { gap: 0; }
+  .hero__visual, .hero__lead, .hero__actions, .hero .eyebrow { display: none; }
+  .hero__title { font-size: 1.95rem; line-height: 1.08; letter-spacing: -0.025em; }
+  .hero__ar { margin-top: 8px; font-size: 1.15rem; }
+  .hero__perks { gap: 6px 14px; margin-top: 12px; font-size: 0.78rem; }
+  .hero__perks .icon { width: 15px; height: 15px; }
+
+  .shop { padding-top: 22px; }
+  .shop .section-head { margin-bottom: 14px; }
+  .shop .section-lead { display: none; }
+  .filters { margin-bottom: 18px; }
+  .chip { padding: 8px 14px; font-size: 0.84rem; }
+  .chip__count, .chip__long { display: none; }
+  .chip__short { display: inline; }
+
+  .product-grid { gap: 20px 12px; }
+  .card__body { padding-top: 10px; }
+  .card__title { font-size: 0.95rem; }
+  .card__ar { font-size: 0.92rem; }
+  .card__price { font-size: 0.92rem; }
+
+  .story__media img { aspect-ratio: 1; object-position: 50% 20%; }
+  .story__text { font-size: 0.98rem; }
+  .story__ar { font-size: 1.15rem; }
+  .features { margin-top: 24px; gap: 14px; }
+  .step { padding: 22px; }
+  .step__num { font-size: 2.4rem; }
+  .step h3 { margin-top: 14px; font-size: 1.15rem; }
+  .step .icon-tile { top: 22px; right: 22px; width: 40px; height: 40px; }
+
+  /* Product page: a shorter photo so "Add to cart" comes sooner */
+  .product-page { padding-top: 12px; }
+  .breadcrumbs { margin-bottom: 8px; font-size: 0.8rem; }
+  .product { gap: 16px; }
+  .product__stage img { max-height: min(42vh, 380px); }
+  .product__title { font-size: 1.75rem; }
+  .product__ar { font-size: 1.2rem; }
+  .product__price-row { margin-top: 10px; }
+  .product__price { font-size: 1.6rem; }
+  .product__desc { margin-top: 16px; font-size: 0.98rem; }
+  .product__desc-ar { padding: 12px 16px; font-size: 1.08rem; }
+  .buy { margin-top: 16px; }
+  /* buy buttons right under the price, descriptions after them */
+  .buy, .product__buy-now { order: 1; }
+  .product__desc, .product__desc-ar { order: 2; }
+  .assurances { order: 3; }
+  .thumb { width: 60px; height: 60px; }
+  .detail { padding: 20px; }
+  .detail__title { font-size: 1.15rem; }
+
+  .page-head { padding-block: 16px 20px; }
+  .page-title { font-size: 1.9rem; }
+
+  .site-footer { padding-top: 48px; }
+  .footer-cta__title { font-size: 1.6rem; }
+  .footer-grid { gap: 28px; padding-block: 36px; }
+}
+
+/* ---------- 10. Motion ---------- */
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(28px);
@@ -1123,7 +1149,6 @@ p { margin: 0; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes kenburns { from { transform: scale(1.14) translate(1.5%, 1%); } to { transform: scale(1.02) translate(-1%, -1%); } }
 @keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(5%, 7%) scale(1.15); } }
-@keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes bump { 0% { transform: scale(1); } 35% { transform: scale(1.5); } 100% { transform: scale(1); } }
 @keyframes pop { from { transform: scale(0.3); opacity: 0; } }
 @keyframes tick { from { transform: translateY(-45%); opacity: 0; } }

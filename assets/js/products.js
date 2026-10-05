@@ -30,8 +30,9 @@
 
 const DELIVERY_FEE = 4;
 
+// `short` (optional) is the label shown on phones, where space is tight.
 const CATEGORIES = [
-  { id: "soap", label: "Natural Soaps", labelAr: "صابون طبيعي" },
+  { id: "soap", label: "Natural Soaps", short: "Soaps", labelAr: "صابون طبيعي" },
   { id: "face", label: "Face", labelAr: "الوجه" },
   { id: "hair", label: "Hair", labelAr: "الشعر" },
   { id: "body", label: "Body", labelAr: "الجسم" },
