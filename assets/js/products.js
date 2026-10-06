@@ -12,8 +12,11 @@
      1. Save its photo as      assets/images/products/<id>.jpg
      2. Copy any page in       products/   and rename it  <id>.html
         In the copy, find & replace the old product's id with the new
-        id (this updates its photo and data-product attributes), then
-        update the page title, names, descriptions and ingredients.
+        id (this updates its photo, data-product attributes and web
+        address), then update the names, descriptions and ingredients,
+        and in <head> the title, description, keywords, og:/twitter:
+        tags and image size, in English and Arabic like the others.
+        Add the page (and its photos) to sitemap.xml too.
      3. Copy one entry below, paste it where you want it to appear in
         the shop, and fill it in. `id` must match the page file name.
 
