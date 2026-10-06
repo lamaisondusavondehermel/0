@@ -8,8 +8,9 @@
 (() => {
   const section = document.querySelector("[data-product]");
   if (!section) return;
-  const product = Cart.product(section.dataset.product);
-  if (!product) return;
+  const base = Cart.product(section.dataset.product);
+  if (!base) return;
+  let product = base; // the size being bought (see the size picker below)
 
   const stage = section.querySelector(".product__stage");
   if (product.tint) section.style.setProperty("--tint", product.tint);
@@ -81,8 +82,8 @@
   /* ---- You may also like: closest categories first ---- */
   const relatedGrid = document.querySelector("[data-related]");
   if (relatedGrid) {
-    const shared = (other) => other.categories.filter((c) => product.categories.includes(c)).length;
-    PRODUCTS.filter((other) => other.id !== product.id)
+    const shared = (other) => other.categories.filter((c) => base.categories.includes(c)).length;
+    PRODUCTS.filter((other) => other.id !== base.id && !other.sizeOf)
       .map((other, index) => ({ other, score: shared(other), index }))
       .sort((a, b) => b.score - a.score || a.index - b.index)
       .slice(0, 4)
@@ -107,6 +108,21 @@
   document.body.appendChild(bar);
   bar.querySelector("button").addEventListener("click", () => {
     Site.addToCart(product, quantity, bar.querySelector(".buybar__thumb"));
+  });
+
+  /* ---- Size picker (products listed with `sizeOf` in products.js) ---- */
+  const priceEl = section.querySelector("[data-price-of]");
+  const sizeButtons = [...section.querySelectorAll("[data-size-option]")];
+  sizeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const chosen = Cart.product(button.dataset.sizeOption);
+      if (!chosen || chosen === product) return;
+      product = chosen;
+      sizeButtons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+      priceEl.dataset.priceOf = product.id;
+      priceEl.textContent = formatPrice(product.price);
+      bar.querySelector(".buybar__price").textContent = `${formatPrice(product.price)} · ${product.size}`;
+    });
   });
 
   if ("IntersectionObserver" in window && buyBlock) {

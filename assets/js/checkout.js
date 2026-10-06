@@ -34,7 +34,7 @@
 
   const orderTotal = () => Cart.subtotal() + DELIVERY_FEE;
   const orderDetails = () =>
-    Cart.lines().map(({ product, quantity, total }) => `${product.name} (x${quantity}) – ${formatPrice(total)}`).join(" | ");
+    Cart.lines().map(({ product, quantity, total }) => `${product.name}, ${product.size} (x${quantity}) – ${formatPrice(total)}`).join(" | ");
 
   /* ---- Summary ---- */
   function lineTemplate({ product, quantity, total }) {

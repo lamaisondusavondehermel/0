@@ -10,7 +10,8 @@ const Site = (() => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const url = (path) => root + path;
-  const productUrl = (product) => url("products/" + product.id + ".html");
+  // Other sizes of a product share its page.
+  const productUrl = (product) => url("products/" + (product.sizeOf || product.id) + ".html");
   const imageUrl = (product) => url("assets/images/products/" + product.image);
   const categoryOf = (product) => CATEGORIES.find((category) => category.id === product.categories[0]) || null;
 

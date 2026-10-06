@@ -26,6 +26,9 @@
      image       photo file inside assets/images/products/
      tint        soft background colour behind the photo (optional)
      aliases     older names, so carts saved before a rename still work
+     sizeOf      (optional) id of the product this is another size of. It
+                 shares that product's page, where the shopper picks the
+                 size, and is not shown as its own card in the shop.
    ===================================================================== */
 
 const DELIVERY_FEE = 4;
@@ -55,10 +58,30 @@ const PRODUCTS = [
     name: "Honey & Frankincense Soap",
     nameAr: "صابونة العسل ولبان الذكر",
     categories: ["soap", "face", "body"],
-    size: "100 g",
-    price: 7,
+    size: "130 g",
+    price: 8,
     image: "honey-frankincense-soap.jpg",
     tint: "#F5E6C8",
+  },
+  {
+    id: "charcoal-detox-soap",
+    name: "Charcoal Detox Bar",
+    nameAr: "صابونة الفحم النشط",
+    categories: ["soap", "face", "body"],
+    size: "130 g",
+    price: 8,
+    image: "charcoal-detox-soap.jpg",
+    tint: "#E6E6E3",
+  },
+  {
+    id: "hair-minimizing-soap",
+    name: "Hair Minimizing Soap",
+    nameAr: "صابونة بديل الليزر",
+    categories: ["soap", "body"],
+    size: "130 g",
+    price: 10,
+    image: "hair-minimizing-soap.jpg",
+    tint: "#F3EEE2",
   },
 
   /* ---------- Face ---------- */
@@ -108,11 +131,21 @@ const PRODUCTS = [
     name: "Honey & Frankincense Cream",
     nameAr: "كريم لبان الذكر والعسل",
     categories: ["face"],
-    size: "50 g",
+    size: "50 ml",
     price: 9,
     image: "honey-frankincense-cream.jpg",
     tint: "#F2EADC",
     aliases: ["Miel et Encens Cream"],
+  },
+  {
+    id: "eye-repair-gel",
+    name: "Eye Repair Gel",
+    nameAr: "جل العيون",
+    categories: ["face"],
+    size: "15 ml",
+    price: 16,
+    image: "eye-repair-gel.jpg",
+    tint: "#F1E9DD",
   },
   {
     id: "lip-balm",
@@ -146,6 +179,58 @@ const PRODUCTS = [
     image: "scalp-hair-serum.jpg",
     tint: "#F5E7D6",
     aliases: ["Hair Serum"],
+  },
+  {
+    id: "rosemary-shampoo",
+    name: "Rosemary & Caffeine Shampoo",
+    nameAr: "شامبو الروزماري بالكافيين",
+    categories: ["hair"],
+    size: "200 ml",
+    price: 10,
+    image: "rosemary-shampoo.jpg",
+    tint: "#E2EADB",
+  },
+  {
+    id: "rosemary-shampoo-500ml",
+    sizeOf: "rosemary-shampoo",
+    name: "Rosemary & Caffeine Shampoo",
+    nameAr: "شامبو الروزماري بالكافيين",
+    categories: ["hair"],
+    size: "500 ml",
+    price: 25,
+    image: "rosemary-shampoo.jpg",
+    tint: "#E2EADB",
+  },
+  {
+    id: "tea-tree-shampoo",
+    name: "Tea Tree Shampoo",
+    nameAr: "شامبو شجرة الشاي",
+    categories: ["hair"],
+    size: "200 ml",
+    price: 10,
+    image: "tea-tree-shampoo.jpg",
+    tint: "#E1EBDD",
+  },
+  {
+    id: "tea-tree-shampoo-500ml",
+    sizeOf: "tea-tree-shampoo",
+    name: "Tea Tree Shampoo",
+    nameAr: "شامبو شجرة الشاي",
+    categories: ["hair"],
+    size: "500 ml",
+    price: 25,
+    image: "tea-tree-shampoo.jpg",
+    tint: "#E1EBDD",
+  },
+  {
+    id: "naturguard-kids-set",
+    name: "Naturguard Kids Shampoo & Mist",
+    nameAr: "شامبو وميست الحماية للأطفال",
+    categories: ["hair"],
+    size: "200 ml + 100 ml",
+    price: 18,
+    image: "naturguard-kids-set.jpg",
+    tint: "#E3EEF5",
   },
 
   /* ---------- Body ---------- */
@@ -208,5 +293,25 @@ const PRODUCTS = [
     price: 12,
     image: "vanilla-body-lotion.jpg",
     tint: "#F3ECDD",
+  },
+  {
+    id: "hair-minimizing-cream",
+    name: "Hair Minimizing Cream",
+    nameAr: "كريم بديل الليزر",
+    categories: ["body"],
+    size: "50 ml",
+    price: 15,
+    image: "hair-minimizing-cream.jpg",
+    tint: "#ECE8F0",
+  },
+  {
+    id: "hair-minimizing-oil",
+    name: "Hair Minimizing Oil",
+    nameAr: "زيت السعد",
+    categories: ["body", "face"],
+    size: "30 ml",
+    price: 9,
+    image: "hair-minimizing-oil.jpg",
+    tint: "#EFE6D2",
   },
 ];

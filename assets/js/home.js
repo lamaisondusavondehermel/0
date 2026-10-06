@@ -10,9 +10,10 @@
   const status = document.querySelector("[data-filter-status]");
   if (!grid || !bar) return;
 
-  /* ---- Product cards ---- */
+  /* ---- Product cards (other sizes of a product are picked on its page) ---- */
+  const shown = PRODUCTS.filter((product) => !product.sizeOf);
   const columns = getComputedStyle(grid).gridTemplateColumns.split(" ").length || 1;
-  const cards = PRODUCTS.map((product, index) => {
+  const cards = shown.map((product, index) => {
     const card = Site.productCard(product, { revealDelay: (index % columns) * 90 });
     grid.appendChild(card);
     return card;
@@ -23,7 +24,7 @@
   const filters = [{ id: "all", label: "All" }, ...CATEGORIES]
     .map((filter) => ({
       ...filter,
-      count: filter.id === "all" ? PRODUCTS.length : PRODUCTS.filter((p) => p.categories.includes(filter.id)).length,
+      count: filter.id === "all" ? shown.length : shown.filter((p) => p.categories.includes(filter.id)).length,
     }))
     .filter((filter) => filter.count > 0);
 
