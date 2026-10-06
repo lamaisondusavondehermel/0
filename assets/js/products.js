@@ -7,6 +7,11 @@
    so a change made here appears everywhere at once.
 
    To change a price ......... edit `price` (a number, in US dollars).
+                               Each product page also lists its price for
+                               Google (the application/ld+json block in its
+                               <head>). The page corrects it from here when
+                               it loads, but change it there too so every
+                               search engine sees the new price.
    To change the delivery fee  edit DELIVERY_FEE below.
    To add a new product:
      1. Save its photo as      assets/images/products/<id>.jpg
@@ -15,8 +20,9 @@
         id (this updates its photo, data-product attributes and web
         address), then update the names, descriptions and ingredients,
         and in <head> the title, description, keywords, og:/twitter:
-        tags and image size, in English and Arabic like the others.
-        Add the page (and its photos) to sitemap.xml too.
+        tags and image size, in English and Arabic like the others,
+        and the application/ld+json block (name, description, sku,
+        size, price, images). Add the page and photos to sitemap.xml.
      3. Copy one entry below, paste it where you want it to appear in
         the shop, and fill it in. `id` must match the page file name.
 

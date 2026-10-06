@@ -12,6 +12,19 @@
   if (!base) return;
   let product = base; // the size being bought (see the size picker below)
 
+  /* ---- Prices in the page's structured data (read by Google) follow products.js ---- */
+  const schema = document.querySelector("script[data-product-schema]");
+  if (schema) {
+    try {
+      const data = JSON.parse(schema.textContent);
+      (data.hasVariant || [data]).forEach((item) => {
+        const entry = Cart.product(item.sku);
+        if (entry && item.offers) item.offers.price = entry.price.toFixed(2);
+      });
+      schema.textContent = JSON.stringify(data);
+    } catch (error) { /* keep the markup as written */ }
+  }
+
   const stage = section.querySelector(".product__stage");
   if (product.tint) section.style.setProperty("--tint", product.tint);
 
