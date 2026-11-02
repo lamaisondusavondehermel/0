@@ -115,7 +115,7 @@
     <span class="buybar__thumb"><img src="${Site.imageUrl(product)}" alt=""></span>
     <span class="buybar__info">
       <span class="buybar__name">${Site.escapeHtml(product.name)}</span>
-      <span class="buybar__price">${formatPrice(product.price)} · ${Site.escapeHtml(product.size)}</span>
+      <span class="buybar__price">${formatPrice(product.price)} · ${Site.escapeHtml(variantLabel(product))}</span>
     </span>
     <button class="btn btn--primary btn--sm" type="button">Add to cart</button>`;
   document.body.appendChild(bar);
@@ -123,7 +123,7 @@
     Site.addToCart(product, quantity, bar.querySelector(".buybar__thumb"));
   });
 
-  /* ---- Size picker (products listed with `sizeOf` in products.js) ---- */
+  /* ---- Size or scent picker (products listed with `sizeOf` in products.js) ---- */
   const priceEl = section.querySelector("[data-price-of]");
   const sizeButtons = [...section.querySelectorAll("[data-size-option]")];
   sizeButtons.forEach((button) => {
@@ -134,7 +134,7 @@
       sizeButtons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
       priceEl.dataset.priceOf = product.id;
       priceEl.textContent = formatPrice(product.price);
-      bar.querySelector(".buybar__price").textContent = `${formatPrice(product.price)} · ${product.size}`;
+      bar.querySelector(".buybar__price").textContent = `${formatPrice(product.price)} · ${variantLabel(product)}`;
     });
   });
 

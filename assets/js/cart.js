@@ -6,6 +6,8 @@
    ===================================================================== */
 
 const formatPrice = (value) => "$" + Number(value || 0).toFixed(2);
+// What the shopper chose, as shown in the cart and on the order: "White Musk, 250 ml".
+const variantLabel = (product) => (product.scent ? `${product.scent}, ${product.size}` : product.size);
 
 const Cart = (() => {
   const KEY = "hermel_cart";

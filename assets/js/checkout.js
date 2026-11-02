@@ -34,7 +34,7 @@
 
   const orderTotal = () => Cart.subtotal() + DELIVERY_FEE;
   const orderDetails = () =>
-    Cart.lines().map(({ product, quantity, total }) => `${product.name}, ${product.size} (x${quantity}) – ${formatPrice(total)}`).join(" | ");
+    Cart.lines().map(({ product, quantity, total }) => `${product.name}, ${variantLabel(product)} (x${quantity}) – ${formatPrice(total)}`).join(" | ");
 
   /* ---- Summary ---- */
   function lineTemplate({ product, quantity, total }) {
@@ -44,7 +44,7 @@
         <a class="line__thumb" href="${href}" tabindex="-1" aria-hidden="true"><img src="${Site.imageUrl(product)}" alt="" loading="lazy"></a>
         <div class="line__info">
           <a class="line__name" href="${href}">${esc(product.name)}</a>
-          <p class="line__meta">${esc(product.size)} · ${formatPrice(product.price)} each</p>
+          <p class="line__meta">${esc(variantLabel(product))} · ${formatPrice(product.price)} each</p>
           <div class="line__controls">
             <div class="stepper stepper--sm" role="group" aria-label="Quantity of ${esc(product.name)}">
               <button type="button" data-step="-1" aria-label="Decrease quantity" ${quantity <= 1 ? "disabled" : ""}>${Site.icons.minus}</button>

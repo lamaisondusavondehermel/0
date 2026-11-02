@@ -38,9 +38,13 @@
      sizeOf      (optional) id of the product this is another size of. It
                  shares that product's page, where the shopper picks the
                  size, and is not shown as its own card in the shop.
+     scent       (optional) the scent, for products sold in several scents.
+                 Each scent is its own entry, linked with `sizeOf`. It is
+                 shown in the cart and on the order, and the "+" on the
+                 product's card opens its page so a scent can be chosen.
    ===================================================================== */
 
-const DELIVERY_FEE = 4;
+const DELIVERY_FEE = 5;
 
 // `short` (optional) is the label shown on phones, where space is tight.
 const CATEGORIES = [
@@ -91,6 +95,37 @@ const PRODUCTS = [
     price: 10,
     image: "hair-minimizing-soap.jpg",
     tint: "#F3EEE2",
+  },
+  {
+    id: "liquid-soap",
+    name: "Liquid Soap",
+    nameAr: "صابون سائل",
+    categories: ["soap", "body"],
+    size: "200 ml",
+    price: 6,
+    image: "liquid-soap.jpg",
+    tint: "#E6ECD9",
+  },
+  {
+    id: "grape-cluster-soap",
+    name: "Grape Cluster Soap",
+    nameAr: "عنقود العنب",
+    categories: ["soap"],
+    size: "Large",
+    price: 10,
+    image: "grape-cluster-soap.jpg",
+    tint: "#F3E4E1",
+  },
+  {
+    id: "grape-cluster-soap-stand",
+    sizeOf: "grape-cluster-soap",
+    name: "Grape Cluster Soap",
+    nameAr: "عنقود العنب",
+    categories: ["soap"],
+    size: "Large + stand",
+    price: 16,
+    image: "grape-cluster-soap.jpg",
+    tint: "#F3E4E1",
   },
 
   /* ---------- Face ---------- */
@@ -165,6 +200,26 @@ const PRODUCTS = [
     price: 4,
     image: "lip-balm.jpg",
     tint: "#E5EDF0",
+  },
+  {
+    id: "brow-nourishing-serum",
+    name: "Brow Nourishing Serum",
+    nameAr: "سيروم الحواجب",
+    categories: ["face"],
+    size: "10 ml",
+    price: 9,
+    image: "brow-nourishing-serum.jpg",
+    tint: "#F2E9DC",
+  },
+  {
+    id: "eyebrow-soap",
+    name: "Eyebrow Soap",
+    nameAr: "صابونة الحواجب",
+    categories: ["face"],
+    size: "30 ml",
+    price: 10,
+    image: "eyebrow-soap.jpg",
+    tint: "#EEEBE6",
   },
 
   /* ---------- Hair ---------- */
@@ -264,44 +319,62 @@ const PRODUCTS = [
     tint: "#F1E8D9",
   },
   {
-    id: "rose-body-lotion",
-    name: "Rose Body Lotion",
-    nameAr: "لوشن الجسم بالورد",
+    id: "nail-oil",
+    name: "Nail Oil",
+    nameAr: "زيت الأظافر",
     categories: ["body"],
-    size: "250 ml",
-    price: 12,
-    image: "rose-body-lotion.jpg",
-    tint: "#F5E3E3",
+    size: "15 ml",
+    price: 10,
+    image: "nail-oil.jpg",
+    tint: "#F3EADC",
   },
   {
-    id: "white-musk-body-lotion",
-    name: "White Musk Body Lotion",
-    nameAr: "لوشن الجسم بالمسك الأبيض",
+    id: "body-lotion",
+    name: "Body Lotion",
+    nameAr: "لوشن الجسم",
     categories: ["body"],
     size: "250 ml",
     price: 12,
-    image: "white-musk-body-lotion.jpg",
-    tint: "#EEEDE8",
-  },
-  {
-    id: "strawberry-body-lotion",
-    name: "Strawberry Body Lotion",
-    nameAr: "لوشن الجسم بالفراولة",
-    categories: ["body"],
-    size: "250 ml",
-    price: 12,
-    image: "strawberry-body-lotion.jpg",
-    tint: "#F6E0DE",
+    image: "body-lotion.jpg",
+    tint: "#F5E9E3",
+    scent: "Rose",
+    aliases: ["Rose Body Lotion"],
   },
   {
     id: "vanilla-body-lotion",
-    name: "Vanilla Body Lotion",
-    nameAr: "لوشن الجسم بالفانيليا",
+    sizeOf: "body-lotion",
+    name: "Body Lotion",
+    nameAr: "لوشن الجسم",
     categories: ["body"],
     size: "250 ml",
     price: 12,
-    image: "vanilla-body-lotion.jpg",
-    tint: "#F3ECDD",
+    image: "body-lotion.jpg",
+    tint: "#F5E9E3",
+    scent: "Vanilla",
+  },
+  {
+    id: "strawberry-body-lotion",
+    sizeOf: "body-lotion",
+    name: "Body Lotion",
+    nameAr: "لوشن الجسم",
+    categories: ["body"],
+    size: "250 ml",
+    price: 12,
+    image: "body-lotion.jpg",
+    tint: "#F5E9E3",
+    scent: "Strawberry",
+  },
+  {
+    id: "white-musk-body-lotion",
+    sizeOf: "body-lotion",
+    name: "Body Lotion",
+    nameAr: "لوشن الجسم",
+    categories: ["body"],
+    size: "250 ml",
+    price: 12,
+    image: "body-lotion.jpg",
+    tint: "#F5E9E3",
+    scent: "White Musk",
   },
   {
     id: "hair-minimizing-cream",

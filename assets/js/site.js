@@ -133,7 +133,7 @@ const Site = (() => {
     flyToCart(source, product).then(bumpBadge);
     toast({
       title: "Added to your ritual",
-      text: `${product.name} × ${quantity}`,
+      text: `${product.name}${product.scent ? `, ${product.scent}` : ""} × ${quantity}`,
       product,
       action: { href: url("cart.html"), label: "View cart" },
     });
@@ -205,7 +205,7 @@ const Site = (() => {
         <p class="card__ar" lang="ar" dir="rtl">${escapeHtml(product.nameAr)}</p>
         <p class="card__meta"><span class="card__size">${escapeHtml(product.size)}</span><span class="card__price">${formatPrice(product.price)}</span></p>
       </div>
-      <button class="card__add" type="button" data-quick-add="${product.id}" aria-label="Add ${escapeHtml(product.name)} to cart">${icons.plus}${icons.check}</button>`;
+      <button class="card__add" type="button" data-quick-add="${product.id}" aria-label="${product.scent ? `Choose a scent of ${escapeHtml(product.name)}` : `Add ${escapeHtml(product.name)} to cart`}">${icons.plus}${icons.check}</button>`;
 
     const img = card.querySelector("img");
     const loaded = () => img.classList.add("is-loaded");
@@ -222,6 +222,10 @@ const Site = (() => {
     const button = event.target.closest("[data-quick-add]");
     if (!button) return;
     const product = Cart.product(button.dataset.quickAdd);
+    if (product && product.scent) {
+      window.location.href = productUrl(product);
+      return;
+    }
     const card = button.closest(".card");
     if (!addToCart(product, 1, card ? card.querySelector(".card__media") : button)) return;
     button.classList.add("is-added");
