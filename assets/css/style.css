@@ -759,6 +759,12 @@ p { margin: 0; }
 .feature span { font-size: 0.95rem; color: var(--ink-2); }
 @media (max-width: 599px) { .story__media::before { inset: 16px -10px -14px 14px; } }
 
+/* Holiday gifts */
+@media (min-width: 960px) { .holiday .story__inner { grid-template-columns: 1.1fr 0.9fr; } }
+.holiday .story__media img { aspect-ratio: 1199 / 1312; }
+.holiday__actions { margin-top: 32px; }
+.holiday + .shop { padding-top: clamp(64px, 9vw, 120px); }
+
 /* How to order */
 .steps__list { display: grid; gap: 20px; margin: 0; padding: 0; list-style: none; }
 @media (min-width: 860px) { .steps__list { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
