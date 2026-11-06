@@ -1348,5 +1348,36 @@ button.size-chip[aria-pressed="true"] { border-color: var(--ink); background: va
 }
 .totals .totals__savings dd { color: var(--xmas-red); }
 
+/* Christmas music button (assets/js/holiday-music.js) */
+.music-toggle {
+  position: fixed;
+  left: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 56;
+  display: grid;
+  place-items: center;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--xmas-red);
+  color: var(--cream);
+  box-shadow: var(--shadow-md), inset 0 0 0 3px var(--xmas-red), inset 0 0 0 4px rgba(235, 207, 152, 0.7);
+  transition: transform 0.35s var(--ease-spring), background-color 0.3s;
+}
+.music-toggle:hover { transform: scale(1.08); background: var(--xmas-red-deep); }
+.music-toggle:focus-visible { outline-color: var(--xmas-red); }
+.music-toggle .icon { width: 22px; height: 22px; }
+.music-toggle__bars { display: none; align-items: flex-end; gap: 3px; height: 18px; }
+.music-toggle__bars span { width: 3px; height: 100%; border-radius: 2px; background: var(--gold-soft); transform-origin: bottom; animation: eq 0.9s ease-in-out infinite alternate; }
+.music-toggle__bars span:nth-child(2) { animation-delay: -0.3s; }
+.music-toggle__bars span:nth-child(3) { animation-delay: -0.6s; }
+.music-toggle.is-playing .music-toggle__note { display: none; }
+.music-toggle.is-playing .music-toggle__bars { display: flex; }
+/* turned on before: a soft pulse until the visitor taps the page */
+.music-toggle.is-waiting { animation: pulse 2s ease-in-out infinite; }
+.has-buybar .music-toggle { bottom: calc(100px + env(safe-area-inset-bottom)); }
+@media (max-width: 599px) { .music-toggle { left: 14px; bottom: calc(14px + env(safe-area-inset-bottom)); width: 48px; height: 48px; } }
+
+@keyframes eq { from { transform: scaleY(0.3); } to { transform: scaleY(1); } }
+@keyframes pulse { 0%, 100% { box-shadow: var(--shadow-md), 0 0 0 0 rgba(163, 32, 47, 0.45); } 50% { box-shadow: var(--shadow-md), 0 0 0 10px rgba(163, 32, 47, 0); } }
 @keyframes twinkle { from { opacity: 0.55; } to { opacity: 1; } }
 @keyframes snow { to { background-position: 30px 260px, 90px 230px, 160px 500px; } }

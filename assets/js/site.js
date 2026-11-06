@@ -271,6 +271,11 @@ const Site = (() => {
     document.querySelectorAll("[data-sale-only]").forEach((el) => { el.hidden = false; });
   }
 
+  /* ---- Christmas music button (remove after the holidays) ---- */
+  const music = document.createElement("script");
+  music.src = url("assets/js/holiday-music.js");
+  document.body.appendChild(music);
+
   bindData();
   observeReveals();
 
