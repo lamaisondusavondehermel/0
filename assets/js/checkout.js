@@ -14,6 +14,8 @@
   const linesEl = document.querySelector("[data-cart-lines]");
   const countEl = document.querySelector("[data-line-count]");
   const subtotalEl = document.querySelector("[data-subtotal]");
+  const savingsRow = document.querySelector("[data-savings-row]");
+  const savingsEl = document.querySelector("[data-savings]");
   const deliveryEl = document.querySelector("[data-delivery]");
   const totalEl = document.querySelector("[data-total]");
   const summaryTitle = document.querySelector("[data-summary-title]");
@@ -33,8 +35,14 @@
   let submitted = false;
 
   const orderTotal = () => Cart.subtotal() + DELIVERY_FEE;
-  const orderDetails = () =>
-    Cart.lines().map(({ product, quantity, total }) => `${product.name}, ${variantLabel(product)} (x${quantity}) – ${formatPrice(total)}`).join(" | ");
+  // What the sale takes off the normal prices (see SALE in products.js).
+  const savings = () =>
+    Cart.lines().reduce((sum, { product, quantity }) => sum + ((product.regularPrice || product.price) - product.price) * quantity, 0);
+  const orderDetails = () => {
+    const lines = Cart.lines().map(({ product, quantity, total }) => `${product.name}, ${variantLabel(product)} (x${quantity}) – ${formatPrice(total)}`);
+    if (savings() > 0) lines.push(`Holiday sale ${SALE.percent}% off – saved ${formatPrice(savings())}`);
+    return lines.join(" | ");
+  };
 
   /* ---- Summary ---- */
   function lineTemplate({ product, quantity, total }) {
@@ -44,7 +52,7 @@
         <a class="line__thumb" href="${href}" tabindex="-1" aria-hidden="true"><img src="${Site.imageUrl(product)}" alt="" loading="lazy"></a>
         <div class="line__info">
           <a class="line__name" href="${href}">${esc(product.name)}</a>
-          <p class="line__meta">${esc(variantLabel(product))} · ${formatPrice(product.price)} each</p>
+          <p class="line__meta">${esc(variantLabel(product))} · ${priceHtml(product)} each</p>
           <div class="line__controls">
             <div class="stepper stepper--sm" role="group" aria-label="Quantity of ${esc(product.name)}">
               <button type="button" data-step="-1" aria-label="Decrease quantity" ${quantity <= 1 ? "disabled" : ""}>${Site.icons.minus}</button>
@@ -94,6 +102,8 @@
     const count = Cart.count();
     countEl.textContent = `${count} item${count === 1 ? "" : "s"}`;
     subtotalEl.textContent = formatPrice(Cart.subtotal());
+    savingsRow.hidden = savings() <= 0;
+    savingsEl.textContent = formatPrice(savings());
     deliveryEl.textContent = formatPrice(DELIVERY_FEE);
     totalEl.textContent = formatPrice(orderTotal());
     detailsInput.value = orderDetails();

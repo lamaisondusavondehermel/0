@@ -6,6 +6,11 @@
    ===================================================================== */
 
 const formatPrice = (value) => "$" + Number(value || 0).toFixed(2);
+// During a sale (see SALE in products.js) the normal price is shown crossed out.
+const priceHtml = (product) =>
+  product.regularPrice
+    ? `<s class="price-was"><span class="sr-only">Was </span>${formatPrice(product.regularPrice)}</s><span class="sr-only">, now</span> ${formatPrice(product.price)}`
+    : formatPrice(product.price);
 // What the shopper chose, as shown in the cart and on the order: "White Musk, 250 ml".
 const variantLabel = (product) => (product.scent ? `${product.scent}, ${product.size}` : product.size);
 

@@ -133,7 +133,7 @@
       product = chosen;
       sizeButtons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
       priceEl.dataset.priceOf = product.id;
-      priceEl.textContent = formatPrice(product.price);
+      priceEl.innerHTML = priceHtml(product);
       bar.querySelector(".buybar__price").textContent = `${formatPrice(product.price)} · ${variantLabel(product)}`;
     });
   });

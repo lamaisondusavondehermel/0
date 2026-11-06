@@ -174,7 +174,7 @@ const Site = (() => {
   function bindData(scope = document) {
     scope.querySelectorAll("[data-price-of]").forEach((el) => {
       const product = Cart.product(el.dataset.priceOf);
-      if (product) el.textContent = formatPrice(product.price);
+      if (product) el.innerHTML = priceHtml(product);
     });
     scope.querySelectorAll("[data-size-of]").forEach((el) => {
       const product = Cart.product(el.dataset.sizeOf);
@@ -200,10 +200,11 @@ const Site = (() => {
     card.innerHTML = `
       <div class="card__media"><img src="${imageUrl(product)}" alt="${escapeHtml(product.name)}" loading="lazy" decoding="async"></div>
       ${category ? `<span class="card__tag">${escapeHtml(category.label)}</span>` : ""}
+      ${product.regularPrice ? `<span class="card__sale">−${SALE.percent}%</span>` : ""}
       <div class="card__body">
         <h3 class="card__title"><a class="card__link" href="${productUrl(product)}">${escapeHtml(product.name)}</a></h3>
         <p class="card__ar" lang="ar" dir="rtl">${escapeHtml(product.nameAr)}</p>
-        <p class="card__meta"><span class="card__size">${escapeHtml(product.size)}</span><span class="card__price">${formatPrice(product.price)}</span></p>
+        <p class="card__meta"><span class="card__size">${escapeHtml(product.size)}</span><span class="card__price">${priceHtml(product)}</span></p>
       </div>
       <button class="card__add" type="button" data-quick-add="${product.id}" aria-label="${product.scent ? `Choose a scent of ${escapeHtml(product.name)}` : `Add ${escapeHtml(product.name)} to cart`}">${icons.plus}${icons.check}</button>`;
 
@@ -254,6 +255,21 @@ const Site = (() => {
     const stage = document.querySelector(".product__stage");
     if (stage) stage.style.viewTransitionName = "";
   });
+
+  /* ---- Holiday sale bar on every page, and content shown only during a sale ---- */
+  if (SALE.active) {
+    const shopHref = document.getElementById("shop") ? "#shop" : url("index.html#shop");
+    const saleBar = document.createElement("div");
+    saleBar.className = "sale-bar";
+    saleBar.innerHTML = `
+      <div class="container sale-bar__inner">
+        <p><strong>${SALE.percent}% off everything</strong> until ${escapeHtml(SALE.until)}</p>
+        <p lang="ar" dir="rtl">خصم ${SALE.percent}% على جميع المنتجات حتى ${escapeHtml(SALE.untilAr)}</p>
+        <a class="sale-bar__link" href="${shopHref}">Shop the sale</a>
+      </div>`;
+    document.body.insertBefore(saleBar, header || document.body.firstChild);
+    document.querySelectorAll("[data-sale-only]").forEach((el) => { el.hidden = false; });
+  }
 
   bindData();
   observeReveals();

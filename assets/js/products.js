@@ -13,6 +13,7 @@
                                it loads, but change it there too so every
                                search engine sees the new price.
    To change the delivery fee  edit DELIVERY_FEE below.
+   To run or end a sale ...... edit SALE at the bottom of this file.
    To add a new product:
      1. Save its photo as      assets/images/products/<id>.jpg
      2. Copy any page in       products/   and rename it  <id>.html
@@ -397,3 +398,22 @@ const PRODUCTS = [
     tint: "#EFE6D2",
   },
 ];
+
+/* Holiday sale: every price above is reduced by `percent` until `ends`
+   (Lebanon time), then the normal prices come back on their own. While
+   it runs, each product keeps its normal price in `regularPrice`, which
+   the site shows crossed out. To end the sale early, set percent to 0. */
+const SALE = {
+  percent: 25,
+  ends: "2027-01-02T00:00:00+02:00", // the end of 1 January
+  until: "1 January",
+  untilAr: "1 كانون الثاني",
+};
+SALE.active = SALE.percent > 0 && Date.now() < Date.parse(SALE.ends);
+
+if (SALE.active) {
+  PRODUCTS.forEach((product) => {
+    product.regularPrice = product.price;
+    product.price = Math.round(product.price * (100 - SALE.percent)) / 100;
+  });
+}
