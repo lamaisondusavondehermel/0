@@ -404,7 +404,7 @@ const PRODUCTS = [
    it runs, each product keeps its normal price in `regularPrice`, which
    the site shows crossed out. To end the sale early, set percent to 0. */
 const SALE = {
-  percent: 25,
+  percent: 0, // sale ended early on 15 Nov 2026; set back to 25 to bring it back
   ends: "2027-01-02T00:00:00+02:00", // the end of 1 January
   until: "1 January",
   untilAr: "1 كانون الثاني",
