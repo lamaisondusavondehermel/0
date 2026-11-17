@@ -208,7 +208,7 @@ const PRODUCTS = [
     nameAr: "سيروم الحواجب",
     categories: ["face"],
     size: "10 ml",
-    price: 7,
+    price: 8,
     image: "brow-nourishing-serum.jpg",
     tint: "#F2E9DC",
   },
