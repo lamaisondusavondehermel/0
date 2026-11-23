@@ -1381,3 +1381,90 @@ button.size-chip[aria-pressed="true"] { border-color: var(--ink); background: va
 @keyframes pulse { 0%, 100% { box-shadow: var(--shadow-md), 0 0 0 0 rgba(163, 32, 47, 0.45); } 50% { box-shadow: var(--shadow-md), 0 0 0 10px rgba(163, 32, 47, 0); } }
 @keyframes twinkle { from { opacity: 0.55; } to { opacity: 1; } }
 @keyframes snow { to { background-position: 30px 260px, 90px 230px, 160px 500px; } }
+
+/* ---------- 12. Customer reviews ----------
+   Homepage "What our customers say" and the "Reviews" block on product
+   pages. The reviews themselves live in assets/js/reviews.js. */
+.reviews--home { padding-top: clamp(16px, 3vw, 40px); }
+
+/* Phones: a swipeable row of cards (the next card peeks in) */
+.reviews__track {
+  display: flex;
+  gap: 14px;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: 6px var(--gutter) 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.reviews__track::-webkit-scrollbar { display: none; }
+.reviews__track:focus-visible { outline: 2px solid var(--olive-500); outline-offset: -2px; border-radius: var(--radius); }
+
+.review {
+  position: relative;
+  display: flex;
+  flex: 0 0 min(84%, 340px);
+  flex-direction: column;
+  margin: 0;
+  padding: 26px 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  text-align: right;
+  scroll-snap-align: start;
+  transition: box-shadow 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+.reviews__track.is-single .review { flex-basis: 100%; }
+.review__mark { width: 34px; height: 26px; margin-bottom: 14px; fill: var(--plum-700); opacity: 0.85; transform: scaleX(-1); }
+.review__text { flex: 1; margin: 0; }
+.review__text p { margin: 0; font-family: var(--font-ar); font-size: 1.22rem; line-height: 1.85; color: var(--ink); }
+.review__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.review__product {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 2px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--olive-100);
+  color: var(--olive-700);
+  font-family: var(--font-ar);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+a.review__product:hover { background: var(--olive-700); color: var(--cream); }
+.review__author { font-family: var(--font-ar); font-size: 0.98rem; color: var(--ink-3); }
+
+.reviews__dots { display: flex; justify-content: center; gap: 7px; margin-top: 2px; }
+.reviews__dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--line-strong); transition: width 0.35s var(--ease-out), background-color 0.3s; }
+.reviews__dots span.is-active { width: 22px; border-radius: var(--radius-pill); background: var(--plum-700); }
+
+.reviews__cta { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: clamp(28px, 4vw, 44px); }
+.reviews__cta .btn [lang="ar"] { font-size: 1.15rem; font-weight: 700; line-height: 1; }
+.reviews__insta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; transition: color 0.3s; }
+.reviews__insta:hover { color: var(--plum-700); }
+.reviews__insta .icon { width: 18px; height: 18px; }
+
+/* Tablets and up: a soft masonry of cards, read from right to left */
+@media (min-width: 760px) {
+  .reviews__track { display: block; margin: 0; padding: 0; overflow: visible; columns: 2; column-gap: 20px; }
+  .reviews__track.is-single { columns: 1; max-width: 620px; }
+  .review { display: inline-flex; width: 100%; margin-bottom: 20px; break-inside: avoid; }
+  .review:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .reviews__dots { display: none; }
+}
+@media (min-width: 1100px) { .reviews--home .reviews__track { columns: 3; } }

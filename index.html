@@ -32,6 +32,8 @@
   <script src="assets/js/cart.js" defer></script>
   <script src="assets/js/site.js" defer></script>
   <script src="assets/js/home.js" defer></script>
+  <script src="assets/js/reviews.js" defer></script>
+  <script src="assets/js/testimonials.js" defer></script>
 </head>
 <body class="page-home" data-root="">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -122,6 +124,22 @@
       <p class="sr-only" aria-live="polite" data-filter-status></p>
       <div class="product-grid" data-product-grid></div>
       <noscript><p class="shop__empty">Please enable JavaScript to browse the collection and place an order.</p></noscript>
+    </div>
+  </section>
+
+  <!-- Reviews are written in assets/js/reviews.js (see the guide at the top of that file) -->
+  <section class="section reviews reviews--home" id="reviews" aria-labelledby="reviews-title" data-reviews-home hidden>
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal>
+        <p class="eyebrow">Reviews · <span lang="ar" dir="rtl">آراء زبائننا</span></p>
+        <h2 class="section-title" id="reviews-title">What our customers <em>say</em></h2>
+      </div>
+      <div class="reviews__track" data-reviews-track dir="rtl" lang="ar" tabindex="0" role="region" aria-label="Customer reviews" data-reveal></div>
+      <div class="reviews__dots" data-reviews-dots dir="rtl" aria-hidden="true"></div>
+      <div class="reviews__cta" data-reveal>
+        <a class="btn btn--primary" href="https://wa.me/96170514786" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.5l1.6-4.5A8.4 8.4 0 1 1 20.5 11.6Z"/><path d="M8.6 11.6h.01M12 11.6h.01M15.4 11.6h.01"/></svg><span lang="ar" dir="rtl">اطلبي عالواتساب</span></a>
+        <a class="reviews__insta" href="https://instagram.com/lamaisondusavondehermel" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><path d="M17.2 6.8h.01"/></svg>Follow us on Instagram</a>
+      </div>
     </div>
   </section>
 
