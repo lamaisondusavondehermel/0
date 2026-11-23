@@ -90,7 +90,7 @@ const PRODUCTS = [
   {
     id: "hair-minimizing-soap",
     name: "Hair Minimizing Soap",
-    nameAr: "صابونة بديل الليزر",
+    nameAr: "صابون تخفيف الشعر",
     categories: ["soap", "body"],
     size: "130 g",
     price: 10,
@@ -380,7 +380,7 @@ const PRODUCTS = [
   {
     id: "hair-minimizing-cream",
     name: "Hair Minimizing Cream",
-    nameAr: "كريم بديل الليزر",
+    nameAr: "كريم تخفيف الشعر",
     categories: ["body"],
     size: "50 ml",
     price: 15,
