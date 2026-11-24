@@ -378,6 +378,16 @@ const PRODUCTS = [
     scent: "White Musk",
   },
   {
+    id: "body-butter",
+    name: "Body Butter",
+    nameAr: "زبدة الجسم",
+    categories: ["body"],
+    size: "120 g",
+    price: 15,
+    image: "body-butter.jpg",
+    tint: "#F2EBE1",
+  },
+  {
     id: "hair-minimizing-cream",
     name: "Hair Minimizing Cream",
     nameAr: "كريم تخفيف الشعر",

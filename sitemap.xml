@@ -10,6 +10,13 @@
     <image:image><image:loc>https://lamaisondusavondehermel.com/assets/images/products/lavender-oat-soap-lifestyle.jpg</image:loc></image:image>
   </url>
   <url>
+    <loc>https://lamaisondusavondehermel.com/products/body-butter.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://lamaisondusavondehermel.com/assets/images/products/body-butter.jpg</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://lamaisondusavondehermel.com/products/body-lotion.html</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
